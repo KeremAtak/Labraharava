@@ -4,25 +4,29 @@ package labraharava.miina;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.paint.Color;
+import java.awt.Color;
 import javax.swing.JFrame;
 import labraharava.komponentit.Nappi;
+import labraharava.komponentit.Ylapaneeli;
+import labraharava.pelikentta.Alustus;
 
 public class Logiikka {
     
+    private int miinat = 16;
     private Nappi[][] napit;
+    private Alustus alustus;
     
-    public Logiikka(Nappi[][] napit) {
+    public Logiikka(Nappi[][] napit, Alustus alustus) {
         this.napit = napit;
+        this.alustus = alustus;
     }
     
     public void painaVasenta(int x, int y) {
         Nappi nappi = napit[x][y];
         if (nappi.getText() != "L") {
             if (nappi.getMiina()) {
-               JFrame frame = new JFrame("Hävisit pelin!");
-               frame.setVisible(true);
-               frame.setPreferredSize(new Dimension(100, 100));
+               lukitseNapitJaNaytaMiinat(java.awt.Color.red);
+               alustus.getYlapaneeli().getTekstikentta().setText("Hävisit pelin!");
             } else {
                 tarkistaNappi(new Numeropari(x, y));
             }
@@ -33,9 +37,15 @@ public class Logiikka {
         Nappi nappi = napit[x][y];
         if (nappi.isEnabled()) {
             if (nappi.getText() != "L") {
-                nappi.setText("L");
+                if (miinat != 0) {
+                    miinat--;
+                    nappi.setText("L");
+                    alustus.getYlapaneeli().getMiinatekstikentta().setText(miinat + "/16");
+                }
             } else {
+                miinat++;
                 nappi.setText("");
+                alustus.getYlapaneeli().getMiinatekstikentta().setText(miinat + "/16");
             }
         }
     }
@@ -117,6 +127,11 @@ public class Logiikka {
                 tarkistaNappi(pari);
             }
         }
+        
+        if (loppuuko()) {
+            alustus.getYlapaneeli().getTekstikentta().setText("Voitit pelin!");
+            lukitseNapitJaNaytaMiinat(java.awt.Color.blue);
+        }
     }
     
     
@@ -135,5 +150,31 @@ public class Logiikka {
             return true;
         }
         return false;
+    }
+    
+    private void lukitseNapitJaNaytaMiinat(Color c) {
+        for (int x = 0; x < napit[0].length; x++) {
+            for (int y = 0; y < napit[1].length; y++) {
+                napit[x][y].setEnabled(false);
+                if(napit[x][y].getMiina()) {
+                    napit[x][y].setText("X");
+                    napit[x][y].setBackground(c);
+                }
+            }
+        }
+    }
+    
+    private boolean loppuuko() {
+        for (int x = 0; x < napit[0].length; x++) {
+            for (int y = 0; y < napit[1].length; y++) {
+                System.out.println(x + " " + y);
+                if (napit[x][y].isEnabled()) {
+                    if(!napit[x][y].getMiina()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import labraharava.miina.Logiikka;
 import labraharava.miina.Numeropari;
+import labraharava.pelikentta.Alustus;
 
-public class Paneeli extends JPanel {
+public class Pelipaneeli extends JPanel {
     
-    private int rivit = 10;
-    private int sarakkeet = 10;
     private Nappi[][] napit;
     private Logiikka logiikka;
     
-    public Paneeli() {
+    public Pelipaneeli(Alustus alustus) {
         this.napit = new Nappi[10][10];
-        this.logiikka = new Logiikka(napit);
+        this.logiikka = new Logiikka(napit, alustus);
         this.setLayout(new GridLayout(10, 10));
         this.setSize(new Dimension(600, 600));
         alustaNapit();
@@ -42,19 +42,17 @@ public class Paneeli extends JPanel {
         Random random = new Random();
         int x = 0;
         int y = 0;
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 13; i++) {
             while (true) {
                 x = random.nextInt(10);
                 y = random.nextInt(10);
                 if (!napit[x][y].getMiina()) {
                     napit[x][y].setMiina(true);
-                    napit[x][y].setText("M");
+                    break;
                 }
-                break;
             }
         }
     }
-    
     
     public Nappi[][] getNapit() {
         return napit;
