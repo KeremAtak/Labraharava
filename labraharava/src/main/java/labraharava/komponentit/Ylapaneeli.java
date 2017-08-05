@@ -36,7 +36,7 @@ public class Ylapaneeli extends JPanel {
         uusiPeliNappi = new JButton("Uusi peli");
         uusiPeliNappi.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if(onNumero(leveyskentta.getText()) && onNumero(korkeuskentta.getText()) && onNumero(miinakentta.getText())) {
+                if (onNumero(leveyskentta.getText()) && onNumero(korkeuskentta.getText()) && onNumero(miinakentta.getText())) {
                     
                     alustus.getFrame().getContentPane().remove(alustus.getPelipaneeli());
                 
@@ -50,7 +50,7 @@ public class Ylapaneeli extends JPanel {
 
                     int korkeus = Integer.parseInt(korkeuskentta.getText());
 
-                    if(korkeus < 2) {
+                    if (korkeus < 2) {
                         korkeus = 2;
                     } else if (korkeus > 20) {
                         korkeus = 20;
@@ -58,8 +58,8 @@ public class Ylapaneeli extends JPanel {
                     
                     int miinat = Integer.parseInt(miinakentta.getText());
                     
-                    if(miinat > (double)leveys * (double)korkeus / 2) {
-                        double apuri = (double)leveys * (double)korkeus / 2;
+                    if (miinat > (double) leveys * (double) korkeus / 2) {
+                        double apuri = (double) leveys * (double) korkeus / 2;
                         miinat = (int) apuri;
                     } else if (miinat < 1) {
                         miinat = 1;
@@ -81,9 +81,9 @@ public class Ylapaneeli extends JPanel {
         leveyskentta = new JTextField();
         leveyskentta.setPreferredSize(new Dimension(60, 20));
         leveyskentta.setText("leveys");
-        leveyskentta.addMouseListener(new MouseAdapter(){
+        leveyskentta.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
                 leveyskentta.setText("");
             }
         });
@@ -91,9 +91,9 @@ public class Ylapaneeli extends JPanel {
         korkeuskentta = new JTextField();
         korkeuskentta.setPreferredSize(new Dimension(60, 20));
         korkeuskentta.setText("korkeus");
-        korkeuskentta.addMouseListener(new MouseAdapter(){
+        korkeuskentta.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
                 korkeuskentta.setText("");
             }
         });
@@ -101,9 +101,9 @@ public class Ylapaneeli extends JPanel {
         this.miinakentta = new JTextField();
         this.miinakentta.setPreferredSize(new Dimension(60, 20));
         this.miinakentta.setText("miinat");
-        miinakentta.addMouseListener(new MouseAdapter(){
+        miinakentta.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
                 miinakentta.setText("");
             }
         });
@@ -121,7 +121,7 @@ public class Ylapaneeli extends JPanel {
     private static boolean onNumero(String teksti) {
         try {
             int i = Integer.parseInt(teksti);
-        } catch(NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             return false;
         }
         return true;

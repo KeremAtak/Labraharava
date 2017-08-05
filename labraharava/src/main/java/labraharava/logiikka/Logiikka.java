@@ -31,9 +31,9 @@ public class Logiikka {
     public void painaVasenta(int x, int y) {
         Nappi nappi = napit[x][y];
         if (nappi.isEnabled()) {
-                if (nappi.getText() != "L") {
-                    if (nappi.getMiina()) {
-                        paataPeli("Hävisit pelin!", java.awt.Color.red);
+            if (nappi.getText() != "L") {
+                if (nappi.getMiina()) {
+                    paataPeli("Hävisit pelin!", java.awt.Color.red);
                 } else {
                     tarkistaNappi(new Numeropari(x, y));
                 }
@@ -188,7 +188,7 @@ public class Logiikka {
         for (int x = 0; x < pelipaneeli.getLeveys(); x++) {
             for (int y = 0; y < pelipaneeli.getKorkeus(); y++) {
                 napit[x][y].setEnabled(false);
-                if(napit[x][y].getMiina()) {
+                if (napit[x][y].getMiina()) {
                     napit[x][y].setText("X");
                     napit[x][y].setBackground(c);
                 }
@@ -201,7 +201,7 @@ public class Logiikka {
         for (int x = 0; x < pelipaneeli.getLeveys(); x++) {
             for (int y = 0; y < pelipaneeli.getKorkeus(); y++) {
                 if (napit[x][y].isEnabled()) {
-                    if(!napit[x][y].getMiina()) {
+                    if (!napit[x][y].getMiina()) {
                         return false;
                     }
                 }
