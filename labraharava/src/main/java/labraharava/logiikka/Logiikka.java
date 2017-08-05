@@ -64,7 +64,28 @@ public class Logiikka {
         Nappi nappi = napit[x][y];
         parit = new ArrayList<>();
         
-        //Tässä on vikaa
+        tarkistaNapinPaikka(x, y);
+                
+        int ymparysMiinat = laskeMiinat(parit);
+        if (ymparysMiinat != 0 && !nappi.getMiina()) {
+            nappi.setText(Integer.toString(ymparysMiinat));
+        }
+        nappi.setEnabled(false);
+        
+        if (ymparysMiinat == 0) {
+            for (Numeropari pari : parit) {
+                if (napit[pari.getX()][pari.getY()].isEnabled()) {
+                    tarkistaNappi(pari);
+                }
+            }
+        }
+        
+        if (loppuuko()) {
+            paataPeli("Voitit pelin!", java.awt.Color.BLUE);
+        }
+    }
+    //Tässä on vikaa
+    public void tarkistaNapinPaikka(int x, int y) {
         //vasen yläkulma
         if (x == 0 && y == 0) {
             System.out.println("vasen yläkulma");
@@ -110,23 +131,6 @@ public class Logiikka {
             oikeaAlakulma(x, y);
             parit.add(new Numeropari(x - 1, y + 1));
             parit.add(new Numeropari(x + 1, y - 1));
-        }
-        int ymparysMiinat = laskeMiinat(parit);
-        if (ymparysMiinat != 0 && !nappi.getMiina()) {
-            nappi.setText(Integer.toString(ymparysMiinat));
-        }
-        nappi.setEnabled(false);
-        
-        if (ymparysMiinat == 0) {
-            for (Numeropari pari : parit) {
-                if (napit[pari.getX()][pari.getY()].isEnabled()) {
-                    tarkistaNappi(pari);
-                }
-            }
-        }
-        
-        if (loppuuko()) {
-            paataPeli("Voitit pelin!", java.awt.Color.BLUE);
         }
     }
     
@@ -192,9 +196,10 @@ public class Logiikka {
         }
     }
     
+    //tässä ehkä vikaa
     private boolean loppuuko() {
-        for (int x = 0; x < napit[0].length; x++) {
-            for (int y = 0; y < napit[1].length; y++) {
+        for (int x = 0; x < pelipaneeli.getLeveys(); x++) {
+            for (int y = 0; y < pelipaneeli.getKorkeus(); y++) {
                 if (napit[x][y].isEnabled()) {
                     if(!napit[x][y].getMiina()) {
                         return false;

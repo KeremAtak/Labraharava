@@ -18,6 +18,7 @@ import labraharava.paakansio.Alustus;
 public class Ylapaneeli extends JPanel {
     
     private Alustus alustus;
+    private JButton uusiPeliNappi;
     private JTextField tekstikentta;
     private JTextField miinatekstikentta;
     private JTextField leveyskentta;
@@ -32,7 +33,7 @@ public class Ylapaneeli extends JPanel {
         this.alustus = alustus;
         this.setSize(new Dimension(600, 50));
         
-        JButton uusiPeliNappi = new JButton("Uusi peli");
+        uusiPeliNappi = new JButton("Uusi peli");
         uusiPeliNappi.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if(onNumero(leveyskentta.getText()) && onNumero(korkeuskentta.getText()) && onNumero(miinakentta.getText())) {
@@ -134,6 +135,10 @@ public class Ylapaneeli extends JPanel {
         miinakentta.setText(Integer.toString(miinat));
     }
     
+    public JButton getUusiPeliNappi() {
+        return uusiPeliNappi;
+    }
+    
     public JTextField getTekstikentta() {
         return tekstikentta;
     }
@@ -148,5 +153,9 @@ public class Ylapaneeli extends JPanel {
     
     public JTextField getKorkeuskentta() {
         return korkeuskentta;
+    }
+    
+    public JTextField getMiinakentta() {
+        return miinakentta;
     }
 }
