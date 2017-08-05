@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javafx.scene.layout.Border;
 import javax.swing.*;
-import labraharava.miina.Logiikka;
+import labraharava.logiikka.Logiikka;
 
 public class Nappi extends JButton {
     
@@ -21,7 +21,7 @@ public class Nappi extends JButton {
         this.y = y;
         this.miina = false;
         this.logiikka = logiikka;
-        this.setPreferredSize(new Dimension(60, 60));
+        this.setPreferredSize(new Dimension(450, 450));
         
         this.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

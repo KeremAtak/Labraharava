@@ -10,28 +10,33 @@ import java.util.List;
 import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import labraharava.miina.Logiikka;
-import labraharava.miina.Numeropari;
-import labraharava.pelikentta.Alustus;
+import labraharava.logiikka.Logiikka;
+import labraharava.paakansio.Alustus;
 
 public class Pelipaneeli extends JPanel {
     
     private Nappi[][] napit;
     private Logiikka logiikka;
+    private int leveys;
+    private int korkeus;
+    private int miinat;
     
-    public Pelipaneeli(Alustus alustus) {
-        this.napit = new Nappi[10][10];
-        this.logiikka = new Logiikka(napit, alustus);
-        this.setLayout(new GridLayout(10, 10));
-        this.setSize(new Dimension(600, 600));
+    public Pelipaneeli(Alustus alustus, int leveys, int korkeus, int miinat) {
+        this.napit = new Nappi[leveys][korkeus];
+        this.logiikka = new Logiikka(this, napit, alustus, miinat);
+        this.leveys = leveys;
+        this.korkeus = korkeus;
+        this.miinat = miinat;
+        
+        this.setLayout(new GridLayout(leveys, korkeus));
+        this.setSize(new Dimension(900, 900));
         alustaNapit();
     }
     
     private void alustaNapit() {
-        for (int x = 0; x < 10; x++) {
-            for (int y = 0; y < 10; y++) {
+        for (int y = 0; y < korkeus; y++) {
+            for (int x = 0; x < leveys; x++) {
                 napit[x][y] = new Nappi(logiikka, x, y);
-                
                 this.add(napit[x][y]);
             }
         }
@@ -42,10 +47,10 @@ public class Pelipaneeli extends JPanel {
         Random random = new Random();
         int x = 0;
         int y = 0;
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < miinat; i++) {
             while (true) {
-                x = random.nextInt(10);
-                y = random.nextInt(10);
+                x = random.nextInt(leveys);
+                y = random.nextInt(korkeus);
                 if (!napit[x][y].getMiina()) {
                     napit[x][y].setMiina(true);
                     break;
@@ -56,5 +61,17 @@ public class Pelipaneeli extends JPanel {
     
     public Nappi[][] getNapit() {
         return napit;
+    }
+    
+    public int getLeveys() {
+        return leveys;
+    }
+    
+    public int getKorkeus() {
+        return korkeus;
+    }
+    
+    public int getMiinat() {
+        return miinat;
     }
 }

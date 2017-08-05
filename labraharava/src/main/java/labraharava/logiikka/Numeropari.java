@@ -1,5 +1,5 @@
 
-package labraharava.miina;
+package labraharava.logiikka;
 
 public class Numeropari {
     

@@ -1,6 +1,4 @@
-package labraharava.paakansio;
-
-import labraharava.pelikentta.Alustus;
+package labraharava.paakansio;;
 
 public class main {
     

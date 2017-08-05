@@ -1,17 +1,9 @@
 
-package labraharava.pelikentta;
+package labraharava.paakansio;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Random;
 import javax.swing.*;
-import labraharava.komponentit.Pelipaneeli;
-import labraharava.komponentit.Nappi;
-import labraharava.komponentit.Ylapaneeli;
-import labraharava.miina.Logiikka;
+import labraharava.komponentit.*;
 
 public class Alustus implements Runnable {
     
@@ -23,20 +15,19 @@ public class Alustus implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(600, 650));
+        frame.setPreferredSize(new Dimension(900, 950));
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         this.ylapaneeli = new Ylapaneeli(this);
         
-        luoPeli();
+        luoPeli(10, 10, 15);
     }
     
-    public void luoPeli() {
-        this.ylapaneeli.getTekstikentta().setText("");
-        this.ylapaneeli.getMiinatekstikentta().setText("13/13");
+    public void luoPeli(int leveys, int korkeus, int miinat) {
+        ylapaneeli.asetaTekstitUuttaPeliaVarten("", leveys, korkeus, miinat);
         
-        pelipaneeli = new Pelipaneeli(this);
+        pelipaneeli = new Pelipaneeli(this, leveys, korkeus, miinat);
         frame.add(pelipaneeli);
         this.napit = pelipaneeli.getNapit();
         

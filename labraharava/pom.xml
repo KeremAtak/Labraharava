@@ -38,9 +38,12 @@
                 <configuration>
                     <targetClasses>
                         <param>labraharava.paakansio.*</param>
+                        <param>labraharava.komponentit.*</param>
+                        <param>labraharava.logiikka.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>labraharava.ekatesti.*</param>
+                        <param>labraharava.testit.komponentit.*</param>
+                        <param>labraharava.testit.logiikka.*</param>
                     </targetTests>
                 </configuration>
                 
