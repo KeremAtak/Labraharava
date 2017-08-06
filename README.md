@@ -2,4 +2,4 @@
 
 [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
-[Luokkakaavio](dokumentaatio/luokkakaavio.jpg)
+![Luokkakaavio](dokumentaatio/luokkakaavio.jpg)
