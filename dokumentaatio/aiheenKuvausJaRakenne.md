@@ -8,3 +8,5 @@ https://fi.wikipedia.org/wiki/Miinaharava_(peli)
 Peliin luodaan graafinen käyttöliittymä Swingillä, ja pelikenttä koostuu napeista ja tekstikentistä raivatuilta alueilta. Pelaaja etsii miinoja, ja peli päättyy kun pelialue on raivattu (pelaaja voittaa) tai pelaaja astuu miinaan (pelaaja häviää.)
 <h4>Toiminnallisuus</h4>
 Pelaaja pelaa painamalla vasemmalla hiiren näppäimellä raivaamattomia nappeja millä hän raivaa aluetta tai astuu miinaan. Pelaaja voi merkitä hiiren oikealla näppäimellä napin lipulla jos hän epäilee sitä miinaksi.
+
+![Luokkakaavio](luokkakaavio.jpg)
