@@ -38,34 +38,13 @@ public class Ylapaneeli extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (onNumero(leveyskentta.getText()) && onNumero(korkeuskentta.getText()) && onNumero(miinakentta.getText())) {
                     
-                    alustus.getFrame().getContentPane().remove(alustus.getPelipaneeli());
-                
                     int leveys = Integer.parseInt(leveyskentta.getText());
-
-                    if (leveys < 2) {
-                        leveys = 2;
-                    } else if (leveys > 20) {
-                        leveys = 20;
-                    }
 
                     int korkeus = Integer.parseInt(korkeuskentta.getText());
 
-                    if (korkeus < 2) {
-                        korkeus = 2;
-                    } else if (korkeus > 20) {
-                        korkeus = 20;
-                    }
-                    
                     int miinat = Integer.parseInt(miinakentta.getText());
                     
-                    if (miinat > (double) leveys * (double) korkeus / 2) {
-                        double apuri = (double) leveys * (double) korkeus / 2;
-                        miinat = (int) apuri;
-                    } else if (miinat < 1) {
-                        miinat = 1;
-                    }
-
-                    alustus.luoPeli(leveys, korkeus, miinat);
+                    alustus.valmisteleUusiPeli(leveys, korkeus, miinat);
                 }
             }
         });

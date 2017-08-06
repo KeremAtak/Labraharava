@@ -35,6 +35,31 @@ public class Alustus implements Runnable {
         frame.setVisible(true);
     }
     
+    public void valmisteleUusiPeli(int leveys, int korkeus, int miinat) {
+        frame.remove(pelipaneeli);
+        
+        if (leveys < 2) {
+            leveys = 2;
+        } else if (leveys > 20) {
+            leveys = 20;
+        }
+        
+        if (korkeus < 2) {
+            korkeus = 2;
+        } else if (korkeus > 20) {
+            korkeus = 20;
+        }
+        
+        if (miinat > (double) leveys * (double) korkeus / 2) {
+            double apuri = (double) leveys * (double) korkeus / 2;
+            miinat = (int) apuri;
+        } else if (miinat < 1) {
+            miinat = 1;
+        }
+        
+        luoPeli(leveys, korkeus, miinat);
+    }
+    
     public JFrame getFrame() {
         return frame;
     }
