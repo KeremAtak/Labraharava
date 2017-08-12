@@ -1,29 +1,23 @@
 
 package labraharava.komponentit;
 
-import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javafx.scene.layout.Border;
-import javax.swing.*;
 import labraharava.logiikka.Logiikka;
 
-public class Nappi extends JButton {
+public class Nappi {
     
-    private Boolean miina;
-    private int miinatYmparilla;
     private Logiikka logiikka;
+    
     private int x;
     private int y;
+    private MouseAdapter napinKuuntelija;
     
     public Nappi(Logiikka logiikka, int x, int y) {
         this.x = x;
         this.y = y;
-        this.miina = false;
-        this.logiikka = logiikka;
-        this.setPreferredSize(new Dimension(450, 450));
-        
-        this.addMouseListener(new MouseAdapter() {
+        this.napinKuuntelija = new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getButton() == 1) {
                     painaVasenta();
@@ -32,7 +26,7 @@ public class Nappi extends JButton {
                     painaOikeaa();
                 }
             }
-        });
+        };
     }
     
     private void painaVasenta() {
@@ -43,19 +37,11 @@ public class Nappi extends JButton {
         logiikka.painaOikeaa(x, y);
     }
     
-    public boolean getMiina() {
-        return miina;
+    public MouseAdapter getNapinKuuntelija() {
+        return napinKuuntelija;
     }
     
-    public void setMiina(Boolean miina) {
-        this.miina = miina;
-    }
-    
-    public int getMiinatYmparilla() {
-        return miinatYmparilla;
-    }
-    
-    public void setMiinatYmparilla(int miinatYmparilla) {
-        this.miinatYmparilla = miinatYmparilla;
+    public void setNapinKuuntelija(MouseAdapter napinKuuntelija) {
+        this.napinKuuntelija = napinKuuntelija;
     }
 }

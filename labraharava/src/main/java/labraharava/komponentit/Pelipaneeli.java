@@ -15,63 +15,27 @@ import labraharava.paakansio.Alustus;
 
 public class Pelipaneeli extends JPanel {
     
-    private Nappi[][] napit;
+    private Ruutu[][] napit;
     private Logiikka logiikka;
+    private Ruudukko ruudukko;
     private int leveys;
     private int korkeus;
     private int miinat;
     
     public Pelipaneeli(Alustus alustus, int leveys, int korkeus, int miinat) {
-        this.napit = new Nappi[leveys][korkeus];
-        this.logiikka = new Logiikka(this, napit, alustus, miinat);
-        this.leveys = leveys;
-        this.korkeus = korkeus;
-        this.miinat = miinat;
+        this.napit = new Ruutu[leveys][korkeus];
         
         this.setLayout(new GridLayout(leveys, korkeus));
         this.setSize(new Dimension(900, 900));
-        alustaNapit();
+        
+        this.ruudukko = new Ruudukko(this, alustus, napit, leveys, korkeus, miinat);
     }
     
-    private void alustaNapit() {
-        for (int y = 0; y < korkeus; y++) {
-            for (int x = 0; x < leveys; x++) {
-                napit[x][y] = new Nappi(logiikka, x, y);
-                this.add(napit[x][y]);
-            }
-        }
-        asetaNapeilleMiinat();
+    public Ruudukko getRuudukko() {
+        return ruudukko;
     }
     
-    private void asetaNapeilleMiinat() {
-        Random random = new Random();
-        int x = 0;
-        int y = 0;
-        for (int i = 0; i < miinat; i++) {
-            while (true) {
-                x = random.nextInt(leveys);
-                y = random.nextInt(korkeus);
-                if (!napit[x][y].getMiina()) {
-                    napit[x][y].setMiina(true);
-                    break;
-                }
-            }
-        }
-    }
-    
-    public Nappi[][] getNapit() {
-        return napit;
-    }
-    
-    public int getLeveys() {
-        return leveys;
-    }
-    
-    public int getKorkeus() {
-        return korkeus;
-    }
-    
-    public int getMiinat() {
-        return miinat;
+    public void setLogiikka(Logiikka logiikka) {
+        this.logiikka = logiikka;
     }
 }

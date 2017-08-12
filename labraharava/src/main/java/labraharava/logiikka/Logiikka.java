@@ -1,27 +1,24 @@
 package labraharava.logiikka;
 
-
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
-import javax.swing.JFrame;
-import labraharava.komponentit.Nappi;
-import labraharava.komponentit.Pelipaneeli;
-import labraharava.komponentit.Ylapaneeli;
+import labraharava.komponentit.*;
 import labraharava.paakansio.Alustus;
 
 public class Logiikka {
     
     private int miinat;
     private int miinojaJaljella;
-    private Nappi[][] napit;
+    private Ruutu[][] napit;
     private Alustus alustus;
     private Pelipaneeli pelipaneeli;
+    private Ruudukko ruudukko;
     private List<Numeropari> parit;
     
-    public Logiikka(Pelipaneeli paneeli, Nappi[][] napit, Alustus alustus, int miinat) {
+    public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Ruutu[][] napit, Alustus alustus, int miinat) {
         this.pelipaneeli = paneeli;
+        this.ruudukko = ruudukko;
         this.napit = napit;
         this.alustus = alustus;
         this.miinat = miinat;
@@ -29,7 +26,7 @@ public class Logiikka {
     }
     
     public void painaVasenta(int x, int y) {
-        Nappi nappi = napit[x][y];
+        Ruutu nappi = napit[x][y];
         if (nappi.isEnabled()) {
             if (nappi.getText() != "L") {
                 if (nappi.getMiina()) {
@@ -42,7 +39,7 @@ public class Logiikka {
     }
     
     public void painaOikeaa(int x, int y) {
-        Nappi nappi = napit[x][y];
+        Ruutu nappi = napit[x][y];
         if (nappi.isEnabled()) {
             if (nappi.getText() != "L") {
                 if (miinojaJaljella != 0) {
@@ -61,7 +58,7 @@ public class Logiikka {
     private void tarkistaNappi(Numeropari numeropari) {
         int x = numeropari.getX();
         int y = numeropari.getY();
-        Nappi nappi = napit[x][y];
+        Ruutu nappi = napit[x][y];
         parit = new ArrayList<>();
         
         tarkistaNapinPaikka(x, y);
@@ -86,42 +83,34 @@ public class Logiikka {
     }
     //Tässä on vikaa
     public void tarkistaNapinPaikka(int x, int y) {
-        //vasen yläkulma
         if (x == 0 && y == 0) {
             System.out.println("vasen yläkulma");
             vasenYlakulma(x, y);
-        //oikea yläkulma
-        } else if (x == pelipaneeli.getLeveys() - 1 && y == 0) {
+        } else if (x == ruudukko.getLeveys() - 1 && y == 0) {
             System.out.println("oikea yläkulma");
             oikeaYlakulma(x, y);
-        //oikea alakulma
-        } else if (x == pelipaneeli.getLeveys() - 1 && y == pelipaneeli.getKorkeus() - 1) {
+        } else if (x == ruudukko.getLeveys() - 1 && y == ruudukko.getKorkeus() - 1) {
             System.out.println("oikea alakulma");
             oikeaAlakulma(x, y);
-        //vasen alakulma
-        } else if (x == 0 && y == pelipaneeli.getKorkeus() - 1) {
+        } else if (x == 0 && y == ruudukko.getKorkeus() - 1) {
             System.out.println("vasen alakulma");
             vasenAlakulma(x, y);
-        //vasen laita
         } else if (x == 0) {
             System.out.println("vasen laita");
             parit.add(new Numeropari(x, y - 1));
             parit.add(new Numeropari(x + 1, y - 1));
             vasenYlakulma(x, y);
-        //ylälaita
         } else if (y == 0) {
             System.out.println("ylälaita");
             vasenYlakulma(x, y);
             parit.add(new Numeropari(x - 1, y + 1));
             parit.add(new Numeropari(x - 1, y));
-        //oikea laita
-        } else if (x == pelipaneeli.getLeveys() - 1) {
+        } else if (x == ruudukko.getLeveys() - 1) {
             System.out.println("oikealaita");
             oikeaYlakulma(x, y);
             parit.add(new Numeropari(x - 1, y - 1));
             parit.add(new Numeropari(x, y - 1));
-        //alalaita
-        } else if (y == pelipaneeli.getKorkeus() - 1) {
+        } else if (y == ruudukko.getKorkeus() - 1) {
             System.out.println("alalaita");
             oikeaAlakulma(x, y);
             parit.add(new Numeropari(x + 1, y - 1));
@@ -178,15 +167,12 @@ public class Logiikka {
     
     private void paataPeli(String teksti, Color c) {
         lukitseNapitJaNaytaMiinat(c);
-        int leveys = pelipaneeli.getLeveys();
-        int korkeus = pelipaneeli.getKorkeus();
-        int miinat = pelipaneeli.getMiinat();
-        alustus.getYlapaneeli().asetaTekstitUuttaPeliaVarten(teksti, leveys, korkeus, miinat);
+        alustus.getYlapaneeli().asetaTekstitUuttaPeliaVarten(teksti, ruudukko.getLeveys(), ruudukko.getKorkeus(), ruudukko.getMiinat());
     }
     
     private void lukitseNapitJaNaytaMiinat(Color c) {
-        for (int x = 0; x < pelipaneeli.getLeveys(); x++) {
-            for (int y = 0; y < pelipaneeli.getKorkeus(); y++) {
+        for (int x = 0; x < ruudukko.getLeveys(); x++) {
+            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
                 napit[x][y].setEnabled(false);
                 if (napit[x][y].getMiina()) {
                     napit[x][y].setText("X");
@@ -195,11 +181,10 @@ public class Logiikka {
             }
         }
     }
-    
     //tässä ehkä vikaa
     private boolean loppuuko() {
-        for (int x = 0; x < pelipaneeli.getLeveys(); x++) {
-            for (int y = 0; y < pelipaneeli.getKorkeus(); y++) {
+        for (int x = 0; x < ruudukko.getLeveys(); x++) {
+            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
                 if (napit[x][y].isEnabled()) {
                     if (!napit[x][y].getMiina()) {
                         return false;

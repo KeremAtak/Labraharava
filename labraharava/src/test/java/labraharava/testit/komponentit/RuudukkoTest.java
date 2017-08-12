@@ -1,47 +1,48 @@
 package labraharava.testit.komponentit;
 
-import labraharava.komponentit.Nappi;
+import labraharava.komponentit.Ruutu;
 import labraharava.komponentit.Pelipaneeli;
+import labraharava.komponentit.Ruudukko;
 import labraharava.paakansio.Alustus;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PelipaneeliTest {
+public class RuudukkoTest {
     
     private Alustus alustus;
-    private Pelipaneeli pelipaneeli;
+    private Ruudukko ruudukko;
     
     @Before
     public void setUp() {
         alustus = new Alustus();
         alustus.run();
-        pelipaneeli = alustus.getPelipaneeli();
+        ruudukko = alustus.getPelipaneeli().getRuudukko();
     }
     
     @Test
     public void kenttiaOikeaMaaraAlussa() {
-        assertEquals("Leveys ei ollut alussa 10", pelipaneeli.getLeveys(), 10);
-        assertEquals("Korkeus ei ollut alussa 10", pelipaneeli.getKorkeus(), 10);
+        assertEquals("Leveys ei ollut alussa 10", ruudukko.getLeveys(), 10);
+        assertEquals("Korkeus ei ollut alussa 10", ruudukko.getKorkeus(), 10);
     }
     
     @Test
     public void miinojaOikeaMaaraAlussa() {
-        assertEquals("Miinoja ei ollut alussa 15", pelipaneeli.getMiinat(), 15);
+        assertEquals("Miinoja ei ollut alussa 15", ruudukko.getMiinat(), 15);
     }
     
     @Test
     public void miinatAseteltuOikeinPelikenttaan() {
         for (int i = 0; i < 10; i++) {
-           assertEquals("Kenttään ei ole asetettu oikea määrä miinoja!", pelipaneeli.getMiinat(), 15); 
+           assertEquals("Kenttään ei ole asetettu oikea määrä miinoja!", ruudukko.getMiinat(), 15); 
         }
     }
     
     private int laskeKentanMiinat() {
         int palautus = 0;
-        Nappi[][] napit = pelipaneeli.getNapit();
-        for (int x = 0; x < pelipaneeli.getLeveys(); x++) {
-            for (int y = 0; y < pelipaneeli.getKorkeus(); y++) {
+        Ruutu[][] napit = ruudukko.getNapit();
+        for (int x = 0; x < ruudukko.getLeveys(); x++) {
+            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
                 if (napit[x][y].getMiina()) {
                     palautus++;
                 }
