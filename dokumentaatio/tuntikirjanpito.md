@@ -10,4 +10,4 @@ Päivä | Tunnit | Kuvaus
 06.08.2017 | 0,5h | Pit-raportti ja checkstyle luotu. Checkstylen mukaan koodi on siistitty, Logiikka-luokka on kuitenkin liian pitkä.
 06.08.2017 | 0,25h | Luokkakaavio luotu.
 06.08.2017 | 0,25h | Pit-raportti ja checkstyle siirretty dokumentaatioon.
-06.08.2017 | 1,75h | Uusia komponentteja luotu koodin selkeyden vuoksi.
+13.08.2017 | 1,75h | Uusia komponentteja luotu koodin selkeyden vuoksi.
