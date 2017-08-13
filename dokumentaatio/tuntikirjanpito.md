@@ -11,3 +11,5 @@ Päivä | Tunnit | Kuvaus
 06.08.2017 | 0,25h | Luokkakaavio luotu.
 06.08.2017 | 0,25h | Pit-raportti ja checkstyle siirretty dokumentaatioon.
 13.08.2017 | 1,75h | Uusia komponentteja luotu koodin selkeyden vuoksi.
+13.08.2017 | 2,00h | Logiikkaan liittyviä testejä luotu.
+13.08.2017 | 1,50h | Luokkakaavio päivitetty, Checkstyle ja Pit lisätty readme:n.
