@@ -13,11 +13,9 @@ public class Ruutu extends JButton {
     private Boolean miina;
     private Nappi nappi;
     private int miinatYmparilla;
-    private Logiikka logiikka;
     
     public Ruutu(Logiikka logiikka, int x, int y) {
         this.miina = false;
-        this.logiikka = logiikka;
         this.setPreferredSize(new Dimension(450, 450));
         
         this.nappi = new Nappi(logiikka, x, y);

@@ -62,7 +62,6 @@ public class Logiikka {
         parit = new ArrayList<>();
         
         tarkistaNapinPaikka(x, y);
-                
         int ymparysMiinat = laskeMiinat(parit);
         if (ymparysMiinat != 0 && !nappi.getMiina()) {
             nappi.setText(Integer.toString(ymparysMiinat));
