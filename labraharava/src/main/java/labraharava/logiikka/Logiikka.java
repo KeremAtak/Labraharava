@@ -10,55 +10,55 @@ public class Logiikka {
     
     private int miinat;
     private int miinojaJaljella;
-    private Ruutu[][] napit;
+    private Ruutu[][] ruudut;
     private Alustus alustus;
     private Pelipaneeli pelipaneeli;
     private Ruudukko ruudukko;
     private List<Numeropari> parit;
     
-    public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Ruutu[][] napit, Alustus alustus, int miinat) {
+    public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Ruutu[][] ruudut, Alustus alustus, int miinat) {
         this.pelipaneeli = paneeli;
         this.ruudukko = ruudukko;
-        this.napit = napit;
+        this.ruudut = ruudut;
         this.alustus = alustus;
         this.miinat = miinat;
         this.miinojaJaljella = miinat;
     }
     
     public void painaVasenta(int x, int y) {
-        Ruutu nappi = napit[x][y];
-        if (nappi.isEnabled()) {
-            if (nappi.getText() != "L") {
-                if (nappi.getMiina()) {
+        Ruutu ruutu = ruudut[x][y];
+        if (ruutu.isEnabled()) {
+            if (ruutu.getText() != "L") {
+                if (ruutu.getMiina()) {
                     paataPeli("Hävisit pelin!", java.awt.Color.red);
                 } else {
-                    tarkistaNappi(new Numeropari(x, y));
+                    tarkistaRuutu(new Numeropari(x, y));
                 }
             }
         }
     }
     
     public void painaOikeaa(int x, int y) {
-        Ruutu nappi = napit[x][y];
-        if (nappi.isEnabled()) {
-            if (nappi.getText() != "L") {
+        Ruutu ruutu = ruudut[x][y];
+        if (ruutu.isEnabled()) {
+            if (ruutu.getText() != "L") {
                 if (miinojaJaljella != 0) {
                     miinojaJaljella--;
-                    nappi.setText("L");
+                    ruutu.setText("L");
                     alustus.getYlapaneeli().getMiinatekstikentta().setText(miinojaJaljella + "/" + miinat);
                 }
             } else {
                 miinojaJaljella++;
-                nappi.setText("");
+                ruutu.setText("");
                 alustus.getYlapaneeli().getMiinatekstikentta().setText(miinojaJaljella + "/" + miinat);
             }
         }
     }
     
-    private void tarkistaNappi(Numeropari numeropari) {
+    private void tarkistaRuutu(Numeropari numeropari) {
         int x = numeropari.getX();
         int y = numeropari.getY();
-        Ruutu nappi = napit[x][y];
+        Ruutu nappi = ruudut[x][y];
         parit = new ArrayList<>();
         
         tarkistaNapinPaikka(x, y);
@@ -71,8 +71,8 @@ public class Logiikka {
         
         if (ymparysMiinat == 0) {
             for (Numeropari pari : parit) {
-                if (napit[pari.getX()][pari.getY()].isEnabled()) {
-                    tarkistaNappi(pari);
+                if (ruudut[pari.getX()][pari.getY()].isEnabled()) {
+                    tarkistaRuutu(pari);
                 }
             }
         }
@@ -151,7 +151,7 @@ public class Logiikka {
     private int laskeMiinat(List<Numeropari> numeroparit) {
         int palautus = 0;
         for (Numeropari pari : numeroparit) {
-            if (napit[pari.getX()][pari.getY()].getMiina()) {
+            if (ruudut[pari.getX()][pari.getY()].getMiina()) {
                 palautus++;
             }
         }
@@ -159,7 +159,7 @@ public class Logiikka {
     }
     
     private boolean onkoMiina(Numeropari pari) {
-        if (napit[pari.getX()][pari.getY()].getMiina()) {
+        if (ruudut[pari.getX()][pari.getY()].getMiina()) {
             return true;
         }
         return false;
@@ -173,10 +173,10 @@ public class Logiikka {
     private void lukitseNapitJaNaytaMiinat(Color c) {
         for (int x = 0; x < ruudukko.getLeveys(); x++) {
             for (int y = 0; y < ruudukko.getKorkeus(); y++) {
-                napit[x][y].setEnabled(false);
-                if (napit[x][y].getMiina()) {
-                    napit[x][y].setText("X");
-                    napit[x][y].setBackground(c);
+                ruudut[x][y].setEnabled(false);
+                if (ruudut[x][y].getMiina()) {
+                    ruudut[x][y].setText("X");
+                    ruudut[x][y].setBackground(c);
                 }
             }
         }
@@ -185,8 +185,8 @@ public class Logiikka {
     private boolean loppuuko() {
         for (int x = 0; x < ruudukko.getLeveys(); x++) {
             for (int y = 0; y < ruudukko.getKorkeus(); y++) {
-                if (napit[x][y].isEnabled()) {
-                    if (!napit[x][y].getMiina()) {
+                if (ruudut[x][y].isEnabled()) {
+                    if (!ruudut[x][y].getMiina()) {
                         return false;
                     }
                 }

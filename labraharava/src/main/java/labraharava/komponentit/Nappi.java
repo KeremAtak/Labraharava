@@ -8,12 +8,12 @@ import labraharava.logiikka.Logiikka;
 public class Nappi {
     
     private Logiikka logiikka;
-    
     private int x;
     private int y;
     private MouseAdapter napinKuuntelija;
     
     public Nappi(Logiikka logiikka, int x, int y) {
+        this.logiikka = logiikka;
         this.x = x;
         this.y = y;
         this.napinKuuntelija = new MouseAdapter() {
@@ -29,11 +29,11 @@ public class Nappi {
         };
     }
     
-    private void painaVasenta() {
+    public void painaVasenta() {
         logiikka.painaVasenta(x, y);
     }
     
-    private void painaOikeaa() {
+    public void painaOikeaa() {
         logiikka.painaOikeaa(x, y);
     }
     

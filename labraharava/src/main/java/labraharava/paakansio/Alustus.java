@@ -10,7 +10,7 @@ public class Alustus implements Runnable {
     private JFrame frame;
     private Ylapaneeli ylapaneeli;
     private Pelipaneeli pelipaneeli;
-    private Ruutu[][] napit;
+    private Ruutu[][] ruudut;
     
     @Override
     public void run() {
@@ -29,7 +29,7 @@ public class Alustus implements Runnable {
         
         pelipaneeli = new Pelipaneeli(this, leveys, korkeus, miinat);
         frame.add(pelipaneeli);
-        this.napit = pelipaneeli.getRuudukko().getNapit();
+        this.ruudut = pelipaneeli.getRuudukko().getRuudut();
         
         frame.pack();
         frame.setVisible(true);

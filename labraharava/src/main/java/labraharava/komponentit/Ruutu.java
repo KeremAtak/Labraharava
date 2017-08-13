@@ -11,6 +11,7 @@ import labraharava.logiikka.Logiikka;
 public class Ruutu extends JButton {
     
     private Boolean miina;
+    private Nappi nappi;
     private int miinatYmparilla;
     private Logiikka logiikka;
     
@@ -19,9 +20,13 @@ public class Ruutu extends JButton {
         this.logiikka = logiikka;
         this.setPreferredSize(new Dimension(450, 450));
         
-        Nappi nappi = new Nappi(logiikka, x, y);
+        this.nappi = new Nappi(logiikka, x, y);
         
         this.addMouseListener(nappi.getNapinKuuntelija());
+    }
+    
+    public Nappi getNappi() {
+        return nappi;
     }
     
     public boolean getMiina() {

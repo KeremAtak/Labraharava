@@ -15,7 +15,7 @@ import labraharava.paakansio.Alustus;
  */
 public class Ruudukko {
     
-    private Ruutu[][] napit;
+    private Ruutu[][] ruudut;
     private Pelipaneeli pelipaneeli;
     private Logiikka logiikka;
     private int leveys;
@@ -23,10 +23,10 @@ public class Ruudukko {
     private int miinat;
     
     
-    public Ruudukko(Pelipaneeli pelipaneeli, Alustus alustus, Ruutu[][] napit, int leveys, int korkeus, int miinat) {
+    public Ruudukko(Pelipaneeli pelipaneeli, Alustus alustus, Ruutu[][] ruudut, int leveys, int korkeus, int miinat) {
         this.pelipaneeli = pelipaneeli;
-        this.napit = napit;
-        this.logiikka = new Logiikka(pelipaneeli, this, napit, alustus, miinat);
+        this.ruudut = ruudut;
+        this.logiikka = new Logiikka(pelipaneeli, this, ruudut, alustus, miinat);
         this.pelipaneeli.setLogiikka(logiikka);
         this.leveys = leveys;
         this.korkeus = korkeus;
@@ -38,8 +38,8 @@ public class Ruudukko {
     private void alustaNapit() {
         for (int y = 0; y < korkeus; y++) {
             for (int x = 0; x < leveys; x++) {
-                napit[x][y] = new Ruutu(logiikka, x, y);
-                pelipaneeli.add(napit[x][y]);
+                ruudut[x][y] = new Ruutu(logiikka, x, y);
+                pelipaneeli.add(ruudut[x][y]);
             }
         }
         asetaNapeilleMiinat();
@@ -53,8 +53,8 @@ public class Ruudukko {
             while (true) {
                 x = random.nextInt(leveys);
                 y = random.nextInt(korkeus);
-                if (!napit[x][y].getMiina()) {
-                    napit[x][y].setMiina(true);
+                if (!ruudut[x][y].getMiina()) {
+                    ruudut[x][y].setMiina(true);
                     break;
                 }
             }
@@ -65,8 +65,8 @@ public class Ruudukko {
         return logiikka;
     }
     
-    public Ruutu[][] getNapit() {
-        return napit;
+    public Ruutu[][] getRuudut() {
+        return ruudut;
     }
     
     public int getLeveys() {

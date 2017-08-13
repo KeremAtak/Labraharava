@@ -40,10 +40,10 @@ public class RuudukkoTest {
     
     private int laskeKentanMiinat() {
         int palautus = 0;
-        Ruutu[][] napit = ruudukko.getNapit();
+        Ruutu[][] ruudut = ruudukko.getRuudut();
         for (int x = 0; x < ruudukko.getLeveys(); x++) {
             for (int y = 0; y < ruudukko.getKorkeus(); y++) {
-                if (napit[x][y].getMiina()) {
+                if (ruudut[x][y].getMiina()) {
                     palautus++;
                 }
             }
