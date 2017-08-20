@@ -13,6 +13,10 @@ import javax.swing.JTextField;
 import labraharava.logiikka.Logiikka;
 import labraharava.paakansio.Alustus;
 
+/**
+  * Pelin pelipaneeli mikä sisältää pelin ruudukon. 
+  * Peliä pelataan tässä paneelissa.
+  */
 public class Pelipaneeli extends JPanel {
     
     private Ruutu[][] napit;
@@ -21,6 +25,15 @@ public class Pelipaneeli extends JPanel {
     private int leveys;
     private int korkeus;
     private int miinat;
+    
+    /**
+     * Pelipaneelin konstruktori. Luo nappisäiliön, paneelin tyylin ja koon sekä
+     * ruudukon.
+     * @param alustus pelin alustus
+     * @param leveys pelin leveys ruuduissa
+     * @param korkeus pelin korkeus ruuduissa.
+     * @param miinat pelin miinojen määrä.
+     */
     
     public Pelipaneeli(Alustus alustus, int leveys, int korkeus, int miinat) {
         this.napit = new Ruutu[leveys][korkeus];

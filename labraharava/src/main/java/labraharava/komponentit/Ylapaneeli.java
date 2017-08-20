@@ -14,6 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import labraharava.paakansio.Alustus;
 
+/**
+  * Pelin yläpaneeli mikä sisältää pelin luomisnäppäimet.
+  * Peli luodaan pelaajan syötteillä mikäli pelaajan syötteet
+  * kelpaavat.
+  */
 
 public class Ylapaneeli extends JPanel {
     
@@ -25,10 +30,21 @@ public class Ylapaneeli extends JPanel {
     private JTextField korkeuskentta;
     private JTextField miinakentta;
     
+    /**
+     * Yläpaneelin konstruktori. Kutsuu erillistä metodia
+     * missä yläpaneeli luodaan.
+     * @param alustus pelin alustus
+     */
+    
     public Ylapaneeli(Alustus alustus) {
         luoYlapaneelinKomponentit(alustus);
     }
 
+    /**
+     * Metodi luo pelipaneelin koon ja tyylin sekä komponentit.
+     * @param alustus pelin alustus
+     */
+    
     public void luoYlapaneelinKomponentit(Alustus alustus) {
         this.alustus = alustus;
         this.setSize(new Dimension(600, 50));
@@ -97,6 +113,11 @@ public class Ylapaneeli extends JPanel {
         alustus.getFrame().add(this);
     }
     
+    /**
+     * Metodi tarkistaa onko merkkijono kokonaisluku.
+     * @param teksti tarkastettava merkkijono.
+     * @return totuusarvo
+     */
     private static boolean onNumero(String teksti) {
         try {
             int i = Integer.parseInt(teksti);
@@ -106,6 +127,13 @@ public class Ylapaneeli extends JPanel {
         return true;
     }
     
+    /**
+     * Metodi asettaa tekstit oikein uutta peliä varten.
+     * @param teksti tekstikentan teksti
+     * @param leveys pelin leveys
+     * @param korkeus pelin korkeus
+     * @param miinat pelin miinojen määrä
+     */
     public void asetaTekstitUuttaPeliaVarten(String teksti, int leveys, int korkeus, int miinat) {
         tekstikentta.setText(teksti);
         miinatekstikentta.setText(Integer.toString(miinat) + "/" + Integer.toString(miinat));
