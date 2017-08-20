@@ -13,3 +13,4 @@ Päivä | Tunnit | Kuvaus
 13.08.2017 | 1,75h | Uusia komponentteja luotu koodin selkeyden vuoksi.
 13.08.2017 | 2,00h | Logiikkaan liittyviä testejä luotu.
 13.08.2017 | 1,50h | Luokkakaavio päivitetty, Checkstyle ja Pit lisätty readme:n.
+13.08.2017 | 4,00h | JavaDoc luotu. Yritin myös purkaa projektin purkkamaisuutta mutta jokin virhe koodissa teki siitä kelvottoman. Myös monia muita deadlinen tavoitteita jäi tällä viikolla suorittamatta.
