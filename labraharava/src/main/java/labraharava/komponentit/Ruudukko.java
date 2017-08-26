@@ -1,7 +1,9 @@
 package labraharava.komponentit;
 
+import java.util.List;
 import java.util.Random;
 import labraharava.logiikka.Logiikka;
+import labraharava.logiikka.Numeropari;
 import labraharava.paakansio.Alustus;
 
 /**
@@ -38,7 +40,7 @@ public class Ruudukko {
     }
     
     /**
-     * Metodi alustaa ruudukon asettamalla ruudukkoon ruutuja leveyden ja korkeuden verran.
+     * Metodi alustaa ruudukon.
      */
     private void alustaRuudut() {
         for (int y = 0; y < korkeus; y++) {
@@ -47,28 +49,42 @@ public class Ruudukko {
                 pelipaneeli.add(ruudut[x][y]);
             }
         }
-        asetaRuuduilleMiinat();
     }
     
     /**
      * Metodi asettaa ruudukon ruutuihin miinoja annetun määrän.
-     * Jos metodi arpoo miinan ruutuun missä on jo miina se arpoo uuden miinan
-     * koordinaatin.
+     * Jos metodi arpoo miinan ruutuun missä on jo miina tai miina asetetaan kielletyn napin viereen
+     * se arpoo uuden miinan koordinaatin
+     * @param parit koordinaatit numeropareina mihin ei saa asettaa miinoja
      */
-    private void asetaRuuduilleMiinat() {
+    public void asetaRuuduilleMiinat(List<Numeropari> parit) {
         Random random = new Random();
         int x = 0;
         int y = 0;
+        for (Numeropari pari : parit) {
+            System.out.println(pari.getX() + " " + pari.getY());
+        }
         for (int i = 0; i < miinat; i++) {
             while (true) {
                 x = random.nextInt(leveys);
                 y = random.nextInt(korkeus);
-                if (!ruudut[x][y].getMiina()) {
+                
+                if (!ruudut[x][y].getMiina() && !miinaAsetettuKiellettyynKenttaan(x, y, parit)) {
                     ruudut[x][y].setMiina(true);
                     break;
                 }
             }
         }
+    }
+    
+    public boolean miinaAsetettuKiellettyynKenttaan(int x, int y, List<Numeropari> parit) {
+        for (Numeropari pari : parit) {
+            if (pari.getX() == x && pari.getY() == y) {
+                System.out.println("kielletty kenttä");
+                return true;
+            }
+        }
+        return false;
     }
     
     public Logiikka getLogiikka() {

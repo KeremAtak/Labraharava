@@ -19,6 +19,7 @@ public class Logiikka {
     private Pelipaneeli pelipaneeli;
     private Ruudukko ruudukko;
     private List<Numeropari> parit;
+    private boolean avattu;
     
     public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Ruutu[][] ruudut, Alustus alustus, int miinat) {
         this.pelipaneeli = paneeli;
@@ -27,6 +28,7 @@ public class Logiikka {
         this.alustus = alustus;
         this.miinat = miinat;
         this.miinojaJaljella = miinat;
+        this.avattu = false;
     }
     
     /**
@@ -40,6 +42,13 @@ public class Logiikka {
         Ruutu ruutu = ruudut[x][y];
         if (ruutu.isEnabled()) {
             if (ruutu.getText() != "L") {
+                if (!avattu) {
+                    parit = new ArrayList<>();
+                    tarkistaRuudunPaikka(x, y);
+                    parit.add(new Numeropari(x, y));
+                    ruudukko.asetaRuuduilleMiinat(parit);
+                    avattu = true;
+                }
                 if (ruutu.getMiina()) {
                     paataPeli("Hävisit pelin!", java.awt.Color.red);
                 } else {
@@ -84,7 +93,7 @@ public class Logiikka {
         Ruutu nappi = ruudut[x][y];
         parit = new ArrayList<>();
         
-        tarkistaNapinPaikka(x, y);
+        tarkistaRuudunPaikka(x, y);
         int ymparysMiinat = laskeMiinat(parit);
         if (ymparysMiinat != 0 && !nappi.getMiina()) {
             nappi.setText(Integer.toString(ymparysMiinat));
@@ -109,7 +118,7 @@ public class Logiikka {
      * @param x ruudun x-koordinaatti
      * @param y ruudun y-koordinaatti
      */
-    public void tarkistaNapinPaikka(int x, int y) {
+    public void tarkistaRuudunPaikka(int x, int y) {
         if (x == 0 && y == 0) {
             System.out.println("vasen yläkulma");
             vasenYlakulma(x, y);
