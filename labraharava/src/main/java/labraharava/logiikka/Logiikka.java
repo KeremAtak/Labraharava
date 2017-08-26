@@ -108,7 +108,7 @@ public class Logiikka {
         
         if (ymparysMiinat == 0) {
             for (Numeropari pari : parit) {
-                if (ruudut[pari.getX()][pari.getY()].isEnabled()) {
+                if (ruudut[pari.getX()][pari.getY()].isEnabled() && !ruudut[pari.getX()][pari.getY()].getText().equals("L")) {
                     tarkistaRuutu(pari);
                 }
             }
