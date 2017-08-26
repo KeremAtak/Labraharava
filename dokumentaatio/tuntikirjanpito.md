@@ -14,5 +14,4 @@ Päivä | Tunnit | Kuvaus
 13.08.2017 | 2,00h | Logiikkaan liittyviä testejä luotu.
 13.08.2017 | 1,50h | Luokkakaavio päivitetty, Checkstyle ja Pit lisätty readme:n.
 20.08.2017 | 4,00h | JavaDoc luotu. Yritin myös purkaa projektin purkkamaisuutta mutta jokin virhe koodissa teki siitä kelvottoman. Myös monia muita deadlinen tavoitteita jäi tällä viikolla suorittamatta.
-26.08.2017 | 1,50h | Kun ruudukkoa painetaan ensimmäisen kerran niin miinat generoidaan niin että painettuun ruutuun ja sen
-ympärille ei generoidu miinoja. Pelikenttä avaa siis ison kentän.
+26.08.2017 | 1,50h | Kun ruudukkoa painetaan ensimmäisen kerran niin miinat generoidaan niin että painettuun ruutuun ja sen ympärille ei generoidu miinoja. Pelikenttä avaa siis ison kentän.
