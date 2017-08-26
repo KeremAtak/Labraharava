@@ -30,11 +30,11 @@ public class Ruudukko {
     public Ruudukko(Pelipaneeli pelipaneeli, Alustus alustus, Ruutu[][] ruudut, int leveys, int korkeus, int miinat) {
         this.pelipaneeli = pelipaneeli;
         this.ruudut = ruudut;
-        this.logiikka = new Logiikka(pelipaneeli, this, ruudut, alustus, miinat);
+        this.miinat = miinat;
+        this.logiikka = new Logiikka(pelipaneeli, this, ruudut, alustus);
         this.pelipaneeli.setLogiikka(logiikka);
         this.leveys = leveys;
         this.korkeus = korkeus;
-        this.miinat = miinat;
         
         alustaRuudut();
     }
