@@ -24,11 +24,8 @@ public class Logiikka {
      * 
      * @param paneeli pelin pelipaneeli
      * @param ruudukko pelin ruudukko
-     * @param ruudut ruudukon ruudut
      * @param alustus pelin alustaja
-     * @param miinat miinojen määrä
      */
-    
     public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Alustus alustus) {
         this.pelipaneeli = paneeli;
         this.ruudukko = ruudukko;
@@ -118,6 +115,7 @@ public class Logiikka {
     /**
      * Metodi laskee ruutua ympäröivät miinat hyödyntämällä
      * numeroparien koordinaatteja.
+     * @param numeroparit painetun ruudun ympäröivät miinat
      * @return palautus miinojen määrä
      */
     public int laskeMiinat(List<Numeropari> numeroparit) {
@@ -133,6 +131,8 @@ public class Logiikka {
     /**
      * Metodi tarkistaa onko numeroparin koordinaateissa
      * miina.
+     * @param pari koordinatit joilla tarkastetaan onko ruudussa miina
+     * @return totuusarvo onko koordinaatissa miina
      */
     public boolean onkoMiina(Numeropari pari) {
         if (ruudukko.getRuutu(pari.getX(), pari.getY()).getMiina()) {
@@ -144,8 +144,10 @@ public class Logiikka {
      * Metodilla kutsutaan metodeja kun ensimmäistä ruutua painetaan.
      * Metodissa annetaan koordinaatit mitä ruutuja ei saa painaa
      * metodille mikä asettaa miinat ruudukkoon.
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
      */
-    private void painaEnsimmaistaRuutua(int x, int y) {
+    public void painaEnsimmaistaRuutua(int x, int y) {
         List<Numeropari> parit = koordinaattilaskuri.tarkistaRuudunPaikka(x, y);
         parit.add(new Numeropari(x, y));
         ruudukko.asetaRuuduilleMiinat(parit);
@@ -154,8 +156,10 @@ public class Logiikka {
     /**
      * Metodilla päätetään peli. Se kutsuu metodia mikä lukitsee kaikki ruudut, näyttää miinat ja värittää
      * miinat joko sinisellä tai punaisella. Lisäksi alustaa yläpaneeliin tekstit uutta peliä varten.
+     * @param teksti viesti pelaajalle mikä asetetaan yläpaneeliin
+     * @param c väri millä miinat värjätään, punainen kun pelaaja häviää ja sininen kun voittaa
      */
-    private void paataPeli(String teksti, Color c) {
+    public void paataPeli(String teksti, Color c) {
         ruudukko.lukitseRuudut(c);
         alustus.getYlapaneeli().asetaTekstitUuttaPeliaVarten(teksti, ruudukko.getLeveys(), ruudukko.getKorkeus(), ruudukko.getMiinat());
     }

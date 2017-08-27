@@ -55,6 +55,7 @@ public class Ruudukko {
     /**
      * Metodi lukitsee kaikki ruudut, näyttää miinat ja värittää
      * miinat joko sinisellä tai punaisella.
+     * @param c väri millä miinat värjätään, punainen kun pelaaja häviää ja sininen kun voittaa
      */
     public void lukitseRuudut(Color c) {
         for (int x = 0; x < leveys; x++) {

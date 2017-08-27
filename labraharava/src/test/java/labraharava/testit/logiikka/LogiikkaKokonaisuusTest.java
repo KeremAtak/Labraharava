@@ -1,6 +1,7 @@
 
 package labraharava.testit.logiikka;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import labraharava.komponentit.Nappi;
@@ -97,18 +98,39 @@ public class LogiikkaKokonaisuusTest extends LogiikkatestinMetodit {
                 }
             }
         }
-        assertEquals("Lippuja ei voitu asettaa sen verran mitä miinoja oli!", lippujenMaara, 15);
+        assertEquals("Lippuja ei voitu asettaa sen verran mitä miinoja oli", lippujenMaara, 15);
+    }
+    
+    @Test
+    public void lippuHaviaaKunOikeallaPainetaanKahdesti() {
+        logiikka.painaOikeaa(2, 2);
+        logiikka.painaOikeaa(2, 2);
+        assertEquals("Lipun pitäisi hävitä kun oikeaa on painettu kahdesti", ruudut[2][2].isEnabled(), true);
+    }
+    
+    @Test
+    public void ruutujaAukeaaAinakinYmparillaOlevat() {
+        logiikka.painaEnsimmaistaRuutua(2, 2);
+        assertEquals("Ymparillä ruudut eivät auenneet", ruudut[2][2].isEnabled(), true);
     }
     
     @Test
     public void ensimmaistaKertaaPainaessaYmparoivatRuudutAukeavat() {
         for (int i = 0; i < 10; i++) {
-            alustus.getYlapaneeli().asetaTekstitUuttaPeliaVarten("", ruudukko.getLeveys(), ruudukko.getKorkeus(), ruudukko.getMiinat());
-            ruudut[2][2].doClick();
+            logiikka.paataPeli("", java.awt.Color.red);
+            logiikka.painaVasenta(2, 2);
             List<Ruutu> ymparoivatRuudut = ymparoivatRuudut();
-            for (Ruutu ruutu : ymparoivatRuudut) {
-                assertEquals("Ymparöivien ruutujen pitivät olla avattuja", !ruutu.isEnabled(), false);
+            
+            assertEquals("Ymparöivien ruutujen pitivät olla avattuja", ruudutOvatAvattuja(ymparoivatRuudut), true);
+        }
+    }
+    
+    public boolean ruudutOvatAvattuja(List<Ruutu> ymparoivatRuudut) {
+        for (Ruutu ruutu : ymparoivatRuudut) {
+            if (ruutu.isEnabled()) {
+                return false;
             }
         }
+        return true;
     }
 }
