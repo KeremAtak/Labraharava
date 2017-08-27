@@ -16,7 +16,6 @@ public class Logiikka {
     private Alustus alustus;
     private Pelipaneeli pelipaneeli;
     private Ruudukko ruudukko;
-    private Koordinaattilaskuri koordinaattilaskuri;
     private boolean avattu;
     
     /**
@@ -32,7 +31,6 @@ public class Logiikka {
         this.alustus = alustus;
         this.miinat = ruudukko.getMiinat();
         this.miinojaJaljella = miinat;
-        this.koordinaattilaskuri = new Koordinaattilaskuri(ruudukko);
         this.avattu = false;
     }
     
@@ -93,7 +91,7 @@ public class Logiikka {
         int y = numeropari.getY();
         Ruutu ruutu = ruudukko.getRuutu(x, y);
         
-        List<Numeropari> parit = koordinaattilaskuri.tarkistaRuudunPaikka(x, y);
+        List<Numeropari> parit = ruudukko.getKoordinaattilaskuri().tarkistaRuudunPaikka(x, y);
         int ymparysMiinat = laskeMiinat(parit);
         if (ymparysMiinat != 0 && !ruutu.getMiina()) {
             ruutu.setText(Integer.toString(ymparysMiinat));
@@ -148,7 +146,7 @@ public class Logiikka {
      * @param y y-koordinaatti
      */
     public void painaEnsimmaistaRuutua(int x, int y) {
-        List<Numeropari> parit = koordinaattilaskuri.tarkistaRuudunPaikka(x, y);
+        List<Numeropari> parit = ruudukko.getKoordinaattilaskuri().tarkistaRuudunPaikka(x, y);
         parit.add(new Numeropari(x, y));
         ruudukko.asetaRuuduilleMiinat(parit);
         avattu = true;
@@ -185,7 +183,4 @@ public class Logiikka {
         this.avattu = avattu;
     }
     
-    public Koordinaattilaskuri getKoordinaattilaskuri() {
-        return koordinaattilaskuri;
-    }
 }

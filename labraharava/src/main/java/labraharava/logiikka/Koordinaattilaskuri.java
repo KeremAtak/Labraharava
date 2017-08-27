@@ -13,6 +13,10 @@ public class Koordinaattilaskuri {
     private Ruudukko ruudukko;
     private List<Numeropari> parit;
     
+    /**
+     * Koordinaattilaskurin konstruktorin. Asettaa ilmentymämuuttujaksi pelin ruudukon.
+     * @param ruudukko pelin ruudukko
+     */
     public Koordinaattilaskuri(Ruudukko ruudukko) {
         this.ruudukko = ruudukko;
     }

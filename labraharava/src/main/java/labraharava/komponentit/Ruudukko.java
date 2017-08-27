@@ -3,6 +3,7 @@ package labraharava.komponentit;
 import java.awt.Color;
 import java.util.List;
 import java.util.Random;
+import labraharava.logiikka.Koordinaattilaskuri;
 import labraharava.logiikka.Logiikka;
 import labraharava.logiikka.Numeropari;
 import labraharava.paakansio.Alustus;
@@ -15,6 +16,7 @@ public class Ruudukko {
     private Ruutu[][] ruudut;
     private Pelipaneeli pelipaneeli;
     private Logiikka logiikka;
+    private Koordinaattilaskuri koordinaattilaskuri;
     private int leveys;
     private int korkeus;
     private int miinat;
@@ -34,6 +36,7 @@ public class Ruudukko {
         this.miinat = miinat;
         this.logiikka = new Logiikka(pelipaneeli, this, alustus);
         this.pelipaneeli.setLogiikka(logiikka);
+        this.koordinaattilaskuri = new Koordinaattilaskuri(this);
         this.leveys = leveys;
         this.korkeus = korkeus;
         
@@ -87,15 +90,21 @@ public class Ruudukko {
                 x = random.nextInt(leveys);
                 y = random.nextInt(korkeus);
                 
-                if (!ruudut[x][y].getMiina() && !miinaAsetettuKiellettyynKenttaan(x, y, parit)) {
+                if (!ruudut[x][y].getMiina() && !miinaAsetettuKiellettyynRuutuun(x, y, parit)) {
                     ruudut[x][y].setMiina(true);
                     break;
                 }
             }
         }
     }
-    
-    public boolean miinaAsetettuKiellettyynKenttaan(int x, int y, List<Numeropari> parit) {
+    /**
+     * Metodi tarkistaa onko kiellettyihin (painetun ruudun ja sen viereisiin) ruutuihin asetettu miina.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @param parit kielletyt ruudut
+     * @return totuusarvo onko kielletyssä ruudussa miina
+     */
+    public boolean miinaAsetettuKiellettyynRuutuun(int x, int y, List<Numeropari> parit) {
         for (Numeropari pari : parit) {
             if (pari.getX() == x && pari.getY() == y) {
                 return true;
@@ -103,7 +112,23 @@ public class Ruudukko {
         }
         return false;
     }
+    /**
+     * Metodi palauttaa ruudukosta yksittäisen ruudun.
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     * @return palautettava ruutu koordinaateissa
+     */
+    public Ruutu getRuutu(int x, int y) {
+        return ruudut[x][y];
+    }
     
+    public Koordinaattilaskuri getKoordinaattilaskuri() {
+        return koordinaattilaskuri;
+    }
+    
+    public Pelipaneeli getPelipaneeli() {
+        return pelipaneeli;
+    }
     
     public Logiikka getLogiikka() {
         return logiikka;
@@ -113,9 +138,6 @@ public class Ruudukko {
         return ruudut;
     }
     
-    public Ruutu getRuutu(int x, int y) {
-        return ruudut[x][y];
-    }
     
     public int getLeveys() {
         return leveys;

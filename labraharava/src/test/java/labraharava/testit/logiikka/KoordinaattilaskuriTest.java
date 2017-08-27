@@ -23,7 +23,7 @@ public class KoordinaattilaskuriTest {
         ruudukko = alustus.getPelipaneeli().getRuudukko();
         logiikka = ruudukko.getLogiikka();
         ruudut = ruudukko.getRuudut();
-        koordinaattilaskuri = logiikka.getKoordinaattilaskuri();
+        koordinaattilaskuri = ruudukko.getKoordinaattilaskuri();
     }
     
     @Test

@@ -12,6 +12,11 @@ public class Ruudukkologiikka {
     
     private Ruudukko ruudukko;
     
+    /**
+     * Ruudukkologiikan konstruktorin. Asettaa ilmentymämuuttujaksi pelin ruudukon.
+     * @param ruudukko pelin ruudukko
+     */
+    
     public Ruudukkologiikka(Ruudukko ruudukko) {
         this.ruudukko = ruudukko;
     }
@@ -21,8 +26,8 @@ public class Ruudukkologiikka {
     private void alustaRuudut() {
         for (int y = 0; y < ruudukko.getKorkeus(); y++) {
             for (int x = 0; x < ruudukko.getLeveys(); x++) {
-                ruudut[x][y] = new Ruutu(logiikka, x, y);
-                pelipaneeli.add(ruudut[x][y]);
+                ruudukko.getRuudut()[x][y] = new Ruutu(ruudukko.getLogiikka(), x, y);
+                ruudukko.getPelipaneeli().add(ruudukko.getRuudut()[x][y]);
             }
         }
     }
@@ -62,7 +67,7 @@ public class Ruudukkologiikka {
                 x = random.nextInt(ruudukko.getLeveys());
                 y = random.nextInt(ruudukko.getKorkeus());
                 
-                if (!ruudukko.getRuutu(x, y).getMiina() && !miinaAsetettuKiellettyynKenttaan(x, y, parit)) {
+                if (!ruudukko.getRuutu(x, y).getMiina() && !miinaAsetettuKiellettyynRuutuun(x, y, parit)) {
                     ruudukko.getRuutu(x, y).setMiina(true);
                     break;
                 }
@@ -70,7 +75,14 @@ public class Ruudukkologiikka {
         }
     }
     
-    public boolean miinaAsetettuKiellettyynKenttaan(int x, int y, List<Numeropari> parit) {
+    /**
+     * Metodi tarkistaa onko kiellettyihin (painetun ruudun ja sen viereisiin) ruutuihin asetettu miina.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @param parit kielletyt ruudut
+     * @return totuusarvo onko kielletyssä ruudussa miina
+     */
+    public boolean miinaAsetettuKiellettyynRuutuun(int x, int y, List<Numeropari> parit) {
         for (Numeropari pari : parit) {
             if (pari.getX() == x && pari.getY() == y) {
                 return true;
