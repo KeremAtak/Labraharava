@@ -24,17 +24,16 @@ public class Ruudukko {
     /**
      * Ruudukon konstruktori. Luo ruutusäiliön ja asettaa niille miinat.
      * @param pelipaneeli pelin pelipaneeli
-     * @param alustus pelin alustaja
      * @param ruudut pelin ruudut
      * @param leveys pelin leveys ruuduissa
      * @param korkeus pelin korkeus ruuduissa.
      * @param miinat pelin miinojen määrä.
      */
-    public Ruudukko(Pelipaneeli pelipaneeli, Alustus alustus, Ruutu[][] ruudut, int leveys, int korkeus, int miinat) {
+    public Ruudukko(Pelipaneeli pelipaneeli, Ruutu[][] ruudut, int leveys, int korkeus, int miinat) {
         this.pelipaneeli = pelipaneeli;
         this.ruudut = ruudut;
         this.miinat = miinat;
-        this.logiikka = new Logiikka(pelipaneeli, this, alustus);
+        this.logiikka = new Logiikka(this, pelipaneeli.getAlustus());
         this.pelipaneeli.setLogiikka(logiikka);
         this.koordinaattilaskuri = new Koordinaattilaskuri(this);
         this.leveys = leveys;

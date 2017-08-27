@@ -14,19 +14,16 @@ public class Logiikka {
     private int miinat;
     private int miinojaJaljella;
     private Alustus alustus;
-    private Pelipaneeli pelipaneeli;
     private Ruudukko ruudukko;
     private boolean avattu;
     
     /**
      * Logiikan konstruktori.
      * 
-     * @param paneeli pelin pelipaneeli
      * @param ruudukko pelin ruudukko
      * @param alustus pelin alustaja
      */
-    public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Alustus alustus) {
-        this.pelipaneeli = paneeli;
+    public Logiikka(Ruudukko ruudukko, Alustus alustus) {
         this.ruudukko = ruudukko;
         this.alustus = alustus;
         this.miinat = ruudukko.getMiinat();

@@ -19,7 +19,8 @@ import labraharava.paakansio.Alustus;
   */
 public class Pelipaneeli extends JPanel {
     
-    private Ruutu[][] napit;
+    private Ruutu[][] ruudut;
+    private Alustus alustus;
     private Logiikka logiikka;
     private Ruudukko ruudukko;
     private int leveys;
@@ -36,12 +37,17 @@ public class Pelipaneeli extends JPanel {
      */
     
     public Pelipaneeli(Alustus alustus, int leveys, int korkeus, int miinat) {
-        this.napit = new Ruutu[leveys][korkeus];
+        this.ruudut = new Ruutu[leveys][korkeus];
+        this.alustus = alustus;
         
         this.setLayout(new GridLayout(leveys, korkeus));
         this.setSize(new Dimension(900, 900));
         
-        this.ruudukko = new Ruudukko(this, alustus, napit, leveys, korkeus, miinat);
+        this.ruudukko = new Ruudukko(this, ruudut, leveys, korkeus, miinat);
+    }
+    
+    public Alustus getAlustus() {
+        return alustus;
     }
     
     public Ruudukko getRuudukko() {
