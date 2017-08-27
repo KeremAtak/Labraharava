@@ -16,4 +16,5 @@ Päivä | Tunnit | Kuvaus
 20.08.2017 | 4,00h | JavaDoc luotu. Yritin myös purkaa projektin purkkamaisuutta mutta jokin virhe koodissa teki siitä kelvottoman. Myös monia muita deadlinen tavoitteita jäi tällä viikolla suorittamatta.
 26.08.2017 | 1,50h | Kun ruudukkoa painetaan ensimmäisen kerran niin miinat generoidaan niin että painettuun ruutuun ja sen ympärille ei generoidu miinoja. Pelikenttään siis avautuu iso alue ja peliä on mukavampi pelata.
 26.08.2017 | 0,25h | Lippu ei enää häviä jos ruudussa ei ollut miinaa ja sen pitäisi muuten avautua.
-27.08.2017 | 3,00h | Logiikkaa on hajautettu ja testejä luotu.
+27.08.2017 | 2,50h | Logiikkaa on hajautettu ja testejä luotu.
+27.08.2017 | 4,00h | Mielestäni testit ovat nyt tarpeeksi kattavia. Loin Ruudukkologiikka-metodin minkä pitäisi käsitellä ruudukon logiikka mutta en saanut sitä heti toimimaan, joten logiikka toimii edelleen Ruudukko-metodissa. Pit, Javadoc ja Checkstyle päivitetty ohjeiden mukaan.
