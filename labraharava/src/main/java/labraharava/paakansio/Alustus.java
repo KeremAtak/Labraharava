@@ -60,14 +60,14 @@ public class Alustus implements Runnable {
     public void valmisteleUusiPeli(int leveys, int korkeus, int miinat) {
         frame.remove(pelipaneeli);
         
-        if (leveys < 2) {
-            leveys = 2;
+        if (leveys < 5) {
+            leveys = 5;
         } else if (leveys > 20) {
             leveys = 20;
         }
         
-        if (korkeus < 2) {
-            korkeus = 2;
+        if (korkeus < 5) {
+            korkeus = 5;
         } else if (korkeus > 20) {
             korkeus = 20;
         }

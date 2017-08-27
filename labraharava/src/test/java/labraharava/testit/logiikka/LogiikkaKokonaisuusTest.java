@@ -1,6 +1,8 @@
 
 package labraharava.testit.logiikka;
 
+import java.util.ArrayList;
+import java.util.List;
 import labraharava.komponentit.Nappi;
 import labraharava.komponentit.Ruudukko;
 import labraharava.komponentit.Ruutu;
@@ -10,22 +12,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LogiikkaRuutuTest {
+public class LogiikkaKokonaisuusTest extends LogiikkatestinMetodit {
     
     
-    private Alustus alustus;
-    private Ruudukko ruudukko;
-    private Ruutu[][] ruudut;
-    private Logiikka logiikka;
-    
-    @Before
-    public void setUp() {
-        alustus = new Alustus();
-        alustus.run();
-        ruudukko = alustus.getPelipaneeli().getRuudukko();
-        logiikka = ruudukko.getLogiikka();
-        ruudut = ruudukko.getRuudut();
-    }
     
     @Test
     public void miinanVierestaPainettuaVainPainettuRuutuAvautuu() {
@@ -92,23 +81,33 @@ public class LogiikkaRuutuTest {
         assertEquals("Ruutu ei ollut painettavissa kun sen piti olla", ruudut[1][0].getText(), "1");
     }
     
-    
-    private void asetaKaksiRuutua() {
-        ruudut[2][2].setMiina(true);
-        ruudut[3][2].setMiina(true);
-    }
-    
-    private void asetaKulmaanRuutuja() {
-        ruudut[1][2].setMiina(true);
-        ruudut[2][1].setMiina(true);
-    }
-    
-    private void poistaMiinat() {
+    @Test
+    public void lippujaVoiAsettaaEnintaanMiinojenVerran() {
         for (int x = 0; x < ruudukko.getLeveys(); x++) {
             for (int y = 0; y < ruudukko.getKorkeus(); y++) {
-                if (ruudut[x][y].getMiina()) {
-                    ruudut[x][y].setMiina(false);
+                ruudut[x][y].getNappi().painaOikeaa();
+            }
+        }
+        int lippujenMaara = 0;
+        
+        for (int x = 0; x < ruudukko.getLeveys(); x++) {
+            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
+                if (ruudut[x][y].getText().equals("L")) {
+                    lippujenMaara++;
                 }
+            }
+        }
+        assertEquals("Lippuja ei voitu asettaa sen verran mitä miinoja oli!", lippujenMaara, 15);
+    }
+    
+    @Test
+    public void ensimmaistaKertaaPainaessaYmparoivatRuudutAukeavat() {
+        for (int i = 0; i < 10; i++) {
+            alustus.getYlapaneeli().asetaTekstitUuttaPeliaVarten("", ruudukko.getLeveys(), ruudukko.getKorkeus(), ruudukko.getMiinat());
+            ruudut[2][2].doClick();
+            List<Ruutu> ymparoivatRuudut = ymparoivatRuudut();
+            for (Ruutu ruutu : ymparoivatRuudut) {
+                assertEquals("Ymparöivien ruutujen pitivät olla avattuja", !ruutu.isEnabled(), false);
             }
         }
     }

@@ -1,6 +1,5 @@
 package labraharava.logiikka;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
 import labraharava.komponentit.*;
@@ -14,7 +13,6 @@ public class Logiikka {
     
     private int miinat;
     private int miinojaJaljella;
-    private Ruutu[][] ruudut;
     private Alustus alustus;
     private Pelipaneeli pelipaneeli;
     private Ruudukko ruudukko;
@@ -31,10 +29,9 @@ public class Logiikka {
      * @param miinat miinojen määrä
      */
     
-    public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Ruutu[][] ruudut, Alustus alustus) {
+    public Logiikka(Pelipaneeli paneeli, Ruudukko ruudukko, Alustus alustus) {
         this.pelipaneeli = paneeli;
         this.ruudukko = ruudukko;
-        this.ruudut = ruudut;
         this.alustus = alustus;
         this.miinat = ruudukko.getMiinat();
         this.miinojaJaljella = miinat;
@@ -50,7 +47,7 @@ public class Logiikka {
      * @param y painetun ruudun y-koordinaatti
      */
     public void painaVasenta(int x, int y) {
-        Ruutu ruutu = ruudut[x][y];
+        Ruutu ruutu = ruudukko.getRuutu(x, y);
         if (ruutu.isEnabled()) {
             if (ruutu.getText() != "L") {
                 if (!avattu) {
@@ -72,7 +69,7 @@ public class Logiikka {
      * @param y painetun ruudun y-koordinaatti
      */
     public void painaOikeaa(int x, int y) {
-        Ruutu ruutu = ruudut[x][y];
+        Ruutu ruutu = ruudukko.getRuutu(x, y);
         if (ruutu.isEnabled()) {
             if (ruutu.getText() != "L") {
                 if (miinojaJaljella != 0) {
@@ -97,23 +94,22 @@ public class Logiikka {
     private void tarkistaRuutu(Numeropari numeropari) {
         int x = numeropari.getX();
         int y = numeropari.getY();
-        Ruutu nappi = ruudut[x][y];
+        Ruutu ruutu = ruudukko.getRuutu(x, y);
         
         List<Numeropari> parit = koordinaattilaskuri.tarkistaRuudunPaikka(x, y);
         int ymparysMiinat = laskeMiinat(parit);
-        if (ymparysMiinat != 0 && !nappi.getMiina()) {
-            nappi.setText(Integer.toString(ymparysMiinat));
+        if (ymparysMiinat != 0 && !ruutu.getMiina()) {
+            ruutu.setText(Integer.toString(ymparysMiinat));
         }
-        nappi.setEnabled(false);
+        ruutu.setEnabled(false);
         
         if (ymparysMiinat == 0) {
             for (Numeropari pari : parit) {
-                if (ruudut[pari.getX()][pari.getY()].isEnabled() && !ruudut[pari.getX()][pari.getY()].getText().equals("L")) {
+                if (ruudukko.getRuutu(pari.getX(), pari.getY()).isEnabled() && !ruudukko.getRuutu(pari.getX(), pari.getY()).getText().equals("L")) {
                     tarkistaRuutu(pari);
                 }
             }
         }
-        
         if (loppuuko()) {
             paataPeli("Voitit pelin!", java.awt.Color.BLUE);
         }
@@ -124,10 +120,10 @@ public class Logiikka {
      * numeroparien koordinaatteja.
      * @return palautus miinojen määrä
      */
-    private int laskeMiinat(List<Numeropari> numeroparit) {
+    public int laskeMiinat(List<Numeropari> numeroparit) {
         int palautus = 0;
         for (Numeropari pari : numeroparit) {
-            if (ruudut[pari.getX()][pari.getY()].getMiina()) {
+            if (ruudukko.getRuutu(pari.getX(), pari.getY()).getMiina()) {
                 palautus++;
             }
         }
@@ -138,13 +134,12 @@ public class Logiikka {
      * Metodi tarkistaa onko numeroparin koordinaateissa
      * miina.
      */
-    private boolean onkoMiina(Numeropari pari) {
-        if (ruudut[pari.getX()][pari.getY()].getMiina()) {
+    public boolean onkoMiina(Numeropari pari) {
+        if (ruudukko.getRuutu(pari.getX(), pari.getY()).getMiina()) {
             return true;
         }
         return false;
     }
-    
     /**
      * Metodilla kutsutaan metodeja kun ensimmäistä ruutua painetaan.
      * Metodissa annetaan koordinaatit mitä ruutuja ei saa painaa
@@ -156,30 +151,13 @@ public class Logiikka {
         ruudukko.asetaRuuduilleMiinat(parit);
         avattu = true;
     }
-    
     /**
      * Metodilla päätetään peli. Se kutsuu metodia mikä lukitsee kaikki ruudut, näyttää miinat ja värittää
      * miinat joko sinisellä tai punaisella. Lisäksi alustaa yläpaneeliin tekstit uutta peliä varten.
      */
     private void paataPeli(String teksti, Color c) {
-        lukitseRuudutJaPaataPeli(c);
+        ruudukko.lukitseRuudut(c);
         alustus.getYlapaneeli().asetaTekstitUuttaPeliaVarten(teksti, ruudukko.getLeveys(), ruudukko.getKorkeus(), ruudukko.getMiinat());
-    }
-    
-    /**
-     * Metodi lukitsee kaikki ruudut, näyttää miinat ja värittää
-     * miinat joko sinisellä tai punaisella.
-     */
-    private void lukitseRuudutJaPaataPeli(Color c) {
-        for (int x = 0; x < ruudukko.getLeveys(); x++) {
-            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
-                ruudut[x][y].setEnabled(false);
-                if (ruudut[x][y].getMiina()) {
-                    ruudut[x][y].setText("X");
-                    ruudut[x][y].setBackground(c);
-                }
-            }
-        }
     }
     
     /**
@@ -189,13 +167,21 @@ public class Logiikka {
     private boolean loppuuko() {
         for (int x = 0; x < ruudukko.getLeveys(); x++) {
             for (int y = 0; y < ruudukko.getKorkeus(); y++) {
-                if (ruudut[x][y].isEnabled()) {
-                    if (!ruudut[x][y].getMiina()) {
+                if (ruudukko.getRuutu(x, y).isEnabled()) {
+                    if (!ruudukko.getRuutu(x, y).getMiina()) {
                         return false;
                     }
                 }
             }
         }
         return true;
+    }
+    
+    public void setAvattu(Boolean avattu) {
+        this.avattu = avattu;
+    }
+    
+    public Koordinaattilaskuri getKoordinaattilaskuri() {
+        return koordinaattilaskuri;
     }
 }

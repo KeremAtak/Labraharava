@@ -1,5 +1,6 @@
 package labraharava.komponentit;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.Random;
 import labraharava.logiikka.Logiikka;
@@ -31,7 +32,7 @@ public class Ruudukko {
         this.pelipaneeli = pelipaneeli;
         this.ruudut = ruudut;
         this.miinat = miinat;
-        this.logiikka = new Logiikka(pelipaneeli, this, ruudut, alustus);
+        this.logiikka = new Logiikka(pelipaneeli, this, alustus);
         this.pelipaneeli.setLogiikka(logiikka);
         this.leveys = leveys;
         this.korkeus = korkeus;
@@ -47,6 +48,22 @@ public class Ruudukko {
             for (int x = 0; x < leveys; x++) {
                 ruudut[x][y] = new Ruutu(logiikka, x, y);
                 pelipaneeli.add(ruudut[x][y]);
+            }
+        }
+    }
+    
+    /**
+     * Metodi lukitsee kaikki ruudut, näyttää miinat ja värittää
+     * miinat joko sinisellä tai punaisella.
+     */
+    public void lukitseRuudut(Color c) {
+        for (int x = 0; x < leveys; x++) {
+            for (int y = 0; y < korkeus; y++) {
+                ruudut[x][y].setEnabled(false);
+                if (ruudut[x][y].getMiina()) {
+                    ruudut[x][y].setText("X");
+                    ruudut[x][y].setBackground(c);
+                }
             }
         }
     }
@@ -80,12 +97,12 @@ public class Ruudukko {
     public boolean miinaAsetettuKiellettyynKenttaan(int x, int y, List<Numeropari> parit) {
         for (Numeropari pari : parit) {
             if (pari.getX() == x && pari.getY() == y) {
-                System.out.println("kielletty kenttä");
                 return true;
             }
         }
         return false;
     }
+    
     
     public Logiikka getLogiikka() {
         return logiikka;
@@ -93,6 +110,10 @@ public class Ruudukko {
     
     public Ruutu[][] getRuudut() {
         return ruudut;
+    }
+    
+    public Ruutu getRuutu(int x, int y) {
+        return ruudut[x][y];
     }
     
     public int getLeveys() {

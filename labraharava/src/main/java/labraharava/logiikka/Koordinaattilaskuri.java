@@ -27,34 +27,26 @@ public class Koordinaattilaskuri {
     public List<Numeropari> tarkistaRuudunPaikka(int x, int y) {
         parit = new ArrayList<>();
         if (x == 0 && y == 0) {
-            System.out.println("vasen yläkulma");
             vasenYlakulma(x, y);
         } else if (x == ruudukko.getLeveys() - 1 && y == 0) {
-            System.out.println("oikea yläkulma");
             oikeaYlakulma(x, y);
         } else if (x == ruudukko.getLeveys() - 1 && y == ruudukko.getKorkeus() - 1) {
-            System.out.println("oikea alakulma");
             oikeaAlakulma(x, y);
         } else if (x == 0 && y == ruudukko.getKorkeus() - 1) {
-            System.out.println("vasen alakulma");
             vasenAlakulma(x, y);
         } else if (x == 0) {
-            System.out.println("vasen laita");
             parit.add(new Numeropari(x, y - 1));
             parit.add(new Numeropari(x + 1, y - 1));
             vasenYlakulma(x, y);
         } else if (y == 0) {
-            System.out.println("ylälaita");
             vasenYlakulma(x, y);
             parit.add(new Numeropari(x - 1, y + 1));
             parit.add(new Numeropari(x - 1, y));
         } else if (x == ruudukko.getLeveys() - 1) {
-            System.out.println("oikealaita");
             oikeaYlakulma(x, y);
             parit.add(new Numeropari(x - 1, y - 1));
             parit.add(new Numeropari(x, y - 1));
         } else if (y == ruudukko.getKorkeus() - 1) {
-            System.out.println("alalaita");
             oikeaAlakulma(x, y);
             parit.add(new Numeropari(x + 1, y - 1));
             parit.add(new Numeropari(x + 1, y));
