@@ -19,3 +19,4 @@ Päivä | Tunnit | Kuvaus
 27.08.2017 | 2,50h | Logiikkaa on hajautettu ja testejä luotu.
 27.08.2017 | 4,00h | Mielestäni testit ovat nyt tarpeeksi kattavia. Loin Ruudukkologiikka-metodin minkä pitäisi käsitellä ruudukon logiikka mutta en saanut sitä heti toimimaan, joten logiikka toimii edelleen Ruudukko-metodissa. Pit, Javadoc ja Checkstyle päivitetty ohjeiden mukaan.
 27.08.2017 | 1,00h | Turhia yhteyksiä poistettu luokkien väliltä. Luokkakaavio päivitetty. Pit ja Checkstyle päivitetty uudestaan.
+02.09.2017 | 1,00h | Ruudukkologiikka toimii, logiikkaa ei enää ole Ruudukko-metodissa. Testejä siirretty eri luokkiin, Pit-raportissa näytetään vain logiikka.
