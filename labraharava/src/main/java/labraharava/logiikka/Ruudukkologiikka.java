@@ -25,8 +25,8 @@ public class Ruudukkologiikka {
      * Metodi alustaa ruudukon.
      */
     public void alustaRuudut() {
-        for (int y = 0; y < ruudukko.getKorkeus(); y++) {
-            for (int x = 0; x < ruudukko.getLeveys(); x++) {
+        for (int x = 0; x < ruudukko.getLeveys(); x++) {
+            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
                 ruudukko.getRuudut()[x][y] = new Ruutu(ruudukko.getLogiikka(), x, y);
                 ruudukko.getPelipaneeli().add(ruudukko.getRuudut()[x][y]);
             }
