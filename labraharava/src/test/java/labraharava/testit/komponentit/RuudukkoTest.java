@@ -1,12 +1,6 @@
 package labraharava.testit.komponentit;
 
-import java.util.ArrayList;
-import java.util.List;
-import labraharava.komponentit.Ruutu;
-import labraharava.komponentit.Pelipaneeli;
 import labraharava.komponentit.Ruudukko;
-import labraharava.logiikka.Koordinaattilaskuri;
-import labraharava.logiikka.Numeropari;
 import labraharava.paakansio.Alustus;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -40,26 +34,5 @@ public class RuudukkoTest {
         for (int i = 0; i < 10; i++) {
            assertEquals("Kenttään ei ole asetettu oikea määrä miinoja!", ruudukko.getMiinat(), 15); 
         }
-    }
-    
-    @Test
-    public void miinojenAsettelijaAsettaaMiinatOikein() {
-        List<Numeropari> kielletytParit = new ArrayList<>();
-        for (int x = 0; x <= 2; x++) {
-            for (int y = 0; y <= 2; y++) {
-                kielletytParit.add(new Numeropari(x, y));
-            }
-        }
-        ruudukko.asetaRuuduilleMiinat(kielletytParit);
-        assertEquals("Kielletyissä kenteissä oli miinoja", eiMiinojaKielletyissaPareissa(kielletytParit), true);
-    }
-    
-    public boolean eiMiinojaKielletyissaPareissa(List<Numeropari> parit) {
-        for (Numeropari pari : parit) {
-            if (ruudukko.getRuutu(pari.getX(), pari.getY()).getMiina()) {
-                return false;
-            }
-        }
-        return true;
     }
 }

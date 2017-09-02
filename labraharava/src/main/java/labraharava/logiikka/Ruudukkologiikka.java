@@ -20,10 +20,11 @@ public class Ruudukkologiikka {
     public Ruudukkologiikka(Ruudukko ruudukko) {
         this.ruudukko = ruudukko;
     }
+    
     /**
      * Metodi alustaa ruudukon.
      */
-    private void alustaRuudut() {
+    public void alustaRuudut() {
         for (int y = 0; y < ruudukko.getKorkeus(); y++) {
             for (int x = 0; x < ruudukko.getLeveys(); x++) {
                 ruudukko.getRuudut()[x][y] = new Ruutu(ruudukko.getLogiikka(), x, y);
@@ -90,4 +91,15 @@ public class Ruudukkologiikka {
         }
         return false;
     }
+    
+    /**
+     * Metodi palauttaa ruudukosta yksittäisen ruudun.
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     * @return palautettava ruutu koordinaateissa
+     */
+    public Ruutu getRuutu(int x, int y) {
+        return ruudukko.getRuudut()[x][y];
+    }
+    
 }

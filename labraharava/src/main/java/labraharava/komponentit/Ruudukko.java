@@ -6,6 +6,7 @@ import java.util.Random;
 import labraharava.logiikka.Koordinaattilaskuri;
 import labraharava.logiikka.Logiikka;
 import labraharava.logiikka.Numeropari;
+import labraharava.logiikka.Ruudukkologiikka;
 import labraharava.paakansio.Alustus;
 
 /**
@@ -17,6 +18,7 @@ public class Ruudukko {
     private Pelipaneeli pelipaneeli;
     private Logiikka logiikka;
     private Koordinaattilaskuri koordinaattilaskuri;
+    private Ruudukkologiikka ruudukkologiikka;
     private int leveys;
     private int korkeus;
     private int miinat;
@@ -38,7 +40,7 @@ public class Ruudukko {
         this.koordinaattilaskuri = new Koordinaattilaskuri(this);
         this.leveys = leveys;
         this.korkeus = korkeus;
-        
+        this.ruudukkologiikka = new Ruudukkologiikka(this);
         alustaRuudut();
     }
     
@@ -46,12 +48,7 @@ public class Ruudukko {
      * Metodi alustaa ruudukon.
      */
     private void alustaRuudut() {
-        for (int y = 0; y < korkeus; y++) {
-            for (int x = 0; x < leveys; x++) {
-                ruudut[x][y] = new Ruutu(logiikka, x, y);
-                pelipaneeli.add(ruudut[x][y]);
-            }
-        }
+        ruudukkologiikka.alustaRuudut();
     }
     
     /**
@@ -60,15 +57,7 @@ public class Ruudukko {
      * @param c väri millä miinat värjätään, punainen kun pelaaja häviää ja sininen kun voittaa
      */
     public void lukitseRuudut(Color c) {
-        for (int x = 0; x < leveys; x++) {
-            for (int y = 0; y < korkeus; y++) {
-                ruudut[x][y].setEnabled(false);
-                if (ruudut[x][y].getMiina()) {
-                    ruudut[x][y].setText("X");
-                    ruudut[x][y].setBackground(c);
-                }
-            }
-        }
+        ruudukkologiikka.lukitseRuudut(c);
     }
     
     /**
@@ -78,23 +67,7 @@ public class Ruudukko {
      * @param parit koordinaatit numeropareina mihin ei saa asettaa miinoja
      */
     public void asetaRuuduilleMiinat(List<Numeropari> parit) {
-        Random random = new Random();
-        int x = 0;
-        int y = 0;
-        for (Numeropari pari : parit) {
-            System.out.println(pari.getX() + " " + pari.getY());
-        }
-        for (int i = 0; i < miinat; i++) {
-            while (true) {
-                x = random.nextInt(leveys);
-                y = random.nextInt(korkeus);
-                
-                if (!ruudut[x][y].getMiina() && !miinaAsetettuKiellettyynRuutuun(x, y, parit)) {
-                    ruudut[x][y].setMiina(true);
-                    break;
-                }
-            }
-        }
+        ruudukkologiikka.asetaRuuduilleMiinat(parit);
     }
     /**
      * Metodi tarkistaa onko kiellettyihin (painetun ruudun ja sen viereisiin) ruutuihin asetettu miina.
@@ -104,12 +77,7 @@ public class Ruudukko {
      * @return totuusarvo onko kielletyssä ruudussa miina
      */
     public boolean miinaAsetettuKiellettyynRuutuun(int x, int y, List<Numeropari> parit) {
-        for (Numeropari pari : parit) {
-            if (pari.getX() == x && pari.getY() == y) {
-                return true;
-            }
-        }
-        return false;
+        return ruudukkologiikka.miinaAsetettuKiellettyynRuutuun(x, y, parit);
     }
     /**
      * Metodi palauttaa ruudukosta yksittäisen ruudun.
@@ -118,7 +86,7 @@ public class Ruudukko {
      * @return palautettava ruutu koordinaateissa
      */
     public Ruutu getRuutu(int x, int y) {
-        return ruudut[x][y];
+        return ruudukkologiikka.getRuutu(x, y);
     }
     
     public Koordinaattilaskuri getKoordinaattilaskuri() {
@@ -127,6 +95,10 @@ public class Ruudukko {
     
     public Pelipaneeli getPelipaneeli() {
         return pelipaneeli;
+    }
+    
+    public Ruudukkologiikka getRuudukkologiikka() {
+        return ruudukkologiikka;
     }
     
     public Logiikka getLogiikka() {
