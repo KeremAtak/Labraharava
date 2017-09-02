@@ -9,4 +9,6 @@ Peliin luodaan graafinen käyttöliittymä Swingillä, ja pelikenttä koostuu na
 <h4>Toiminnallisuus</h4>
 Pelaaja pelaa painamalla vasemmalla hiiren näppäimellä raivaamattomia nappeja millä hän raivaa aluetta tai astuu miinaan. Pelaaja voi merkitä hiiren oikealla näppäimellä napin lipulla jos hän epäilee sitä miinaksi.
 
-![Luokkakaavio](/dokumentaatio/Luokkakaavio.jpg)
+<h4>Luokkakaavio</h4>
+
+![Luokkakaavio](/dokumentaatio/luokkakaavio.jpg)
