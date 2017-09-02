@@ -11,4 +11,4 @@ Pelaaja pelaa painamalla vasemmalla hiiren näppäimellä raivaamattomia nappeja
 
 <h4>Luokkakaavio</h4>
 
-![Luokkakaavio](/dokumentaatio/luokkakaavio.jpg)
+![Luokkakaavio](/dokumentaatio/Luokkakaavio.jpg)
