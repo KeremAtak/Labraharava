@@ -41,18 +41,11 @@ public class Ruudukko {
         this.leveys = leveys;
         this.korkeus = korkeus;
         this.ruudukkologiikka = new Ruudukkologiikka(this);
-        alustaRuudut();
-    }
-    
-    /**
-     * Metodi alustaa ruudukon.
-     */
-    private void alustaRuudut() {
         ruudukkologiikka.alustaRuudut();
     }
     
     /**
-     * Metodi lukitsee kaikki ruudut, näyttää miinat ja värittää
+     * Metodi kutsuu metodia mikä lukitsee kaikki ruudut, näyttää miinat ja värittää
      * miinat joko sinisellä tai punaisella.
      * @param c väri millä miinat värjätään, punainen kun pelaaja häviää ja sininen kun voittaa
      */
@@ -70,7 +63,7 @@ public class Ruudukko {
         ruudukkologiikka.asetaRuuduilleMiinat(parit);
     }
     /**
-     * Metodi tarkistaa onko kiellettyihin (painetun ruudun ja sen viereisiin) ruutuihin asetettu miina.
+     * Metodi kutsuu metodia mikä tarkistaa onko kiellettyihin (painetun ruudun ja sen viereisiin) ruutuihin asetettu miina.
      * @param x ruudun x-koordinaatti
      * @param y ruudun y-koordinaatti
      * @param parit kielletyt ruudut
@@ -80,7 +73,7 @@ public class Ruudukko {
         return ruudukkologiikka.miinaAsetettuKiellettyynRuutuun(x, y, parit);
     }
     /**
-     * Metodi palauttaa ruudukosta yksittäisen ruudun.
+     * Metodi kutsuu metodia mikä palauttaa ruudukosta yksittäisen ruudun.
      * @param x x-koordinaatti
      * @param y y-koordinaatti
      * @return palautettava ruutu koordinaateissa

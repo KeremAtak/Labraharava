@@ -83,7 +83,19 @@ public class LogiikkaKokonaisuusTest extends LogiikkatestinMetodit {
     }
     
     @Test
-    public void lippujaVoiAsettaaEnintaanMiinojenVerran() {
+    public void kentissaOikeatNumerot3() {
+        luoEinelioruudukko();
+        poistaMiinat();
+        asetaKaksiRuutua();
+        ruudut[3][7].getNappi().painaVasenta();
+        
+        assertEquals("Ruutuun oli luotu väärä teksti", ruudut[3][1].getText(), "2");
+        assertEquals("Ruutuun oli luotu väärä teksti", ruudut[4][1].getText(), "1");
+        assertEquals("Ruutuun oli luotu väärä teksti", ruudut[6][5].getText(), "");
+    }
+    
+    @Test
+    public void lippujaVoiAsettaaEnintaanMiinojenVerran1() {
         for (int x = 0; x < ruudukko.getLeveys(); x++) {
             for (int y = 0; y < ruudukko.getKorkeus(); y++) {
                 ruudut[x][y].getNappi().painaOikeaa();
@@ -102,6 +114,26 @@ public class LogiikkaKokonaisuusTest extends LogiikkatestinMetodit {
     }
     
     @Test
+    public void lippujaVoiAsettaaEnintaanMiinojenVerran2() {
+        luoEinelioruudukko();
+        for (int x = 0; x < ruudukko.getLeveys(); x++) {
+            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
+                ruudut[x][y].getNappi().painaOikeaa();
+            }
+        }
+        int lippujenMaara = 0;
+        
+        for (int x = 0; x < ruudukko.getLeveys(); x++) {
+            for (int y = 0; y < ruudukko.getKorkeus(); y++) {
+                if (ruudut[x][y].getText().equals("L")) {
+                    lippujenMaara++;
+                }
+            }
+        }
+        assertEquals("Lippuja ei voitu asettaa sen verran mitä miinoja oli", lippujenMaara, 20);
+    }
+    
+    @Test
     public void lippuHaviaaKunOikeallaPainetaanKahdesti() {
         logiikka.painaOikeaa(2, 2);
         logiikka.painaOikeaa(2, 2);
@@ -109,7 +141,7 @@ public class LogiikkaKokonaisuusTest extends LogiikkatestinMetodit {
     }
     
     @Test
-    public void ruutujaAukeaaAinakinYmparillaOlevat() {
+    public void ruutujaAukeaaAinakinYmparillaOlevat1() {
         logiikka.painaEnsimmaistaRuutua(2, 2);
         assertEquals("Ymparillä ruudut eivät auenneet", ruudut[2][2].isEnabled(), true);
     }

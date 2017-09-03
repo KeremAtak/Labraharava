@@ -28,11 +28,4 @@ public class RuudukkoTest {
     public void miinojaOikeaMaaraAlussa() {
         assertEquals("Miinoja ei ollut alussa 15", ruudukko.getMiinat(), 15);
     }
-    
-    @Test
-    public void miinatAseteltuOikeinPelikenttaan() {
-        for (int i = 0; i < 10; i++) {
-           assertEquals("Kenttään ei ole asetettu oikea määrä miinoja!", ruudukko.getMiinat(), 15); 
-        }
-    }
 }

@@ -60,9 +60,6 @@ public class Ruudukkologiikka {
         Random random = new Random();
         int x = 0;
         int y = 0;
-        for (Numeropari pari : parit) {
-            System.out.println(pari.getX() + " " + pari.getY());
-        }
         for (int i = 0; i < ruudukko.getMiinat(); i++) {
             while (true) { 
                 x = random.nextInt(ruudukko.getLeveys());
@@ -100,6 +97,10 @@ public class Ruudukkologiikka {
      */
     public Ruutu getRuutu(int x, int y) {
         return ruudukko.getRuudut()[x][y];
+    }
+    
+    public Ruudukko getRuudukko() {
+        return ruudukko;
     }
     
 }

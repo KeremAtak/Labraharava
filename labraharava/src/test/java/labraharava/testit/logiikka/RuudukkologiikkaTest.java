@@ -23,7 +23,29 @@ public class RuudukkologiikkaTest {
     }
     
     @Test
-    public void miinojenAsettelijaAsettaaMiinatOikein() {
+    public void miinatAseteltuOikeinPelikenttaan() {
+        for (int i = 0; i < 10; i++) {
+           assertEquals("Kenttään ei ole asetettu oikea määrä miinoja!", ruudukkologiikka.getRuudukko().getMiinat(), 15); 
+        }
+    }
+    
+    @Test
+    public void miinojenAsettelijaAsettaaMiinatOikein1() {
+        List<Numeropari> kielletytParit = new ArrayList<>();
+        for (int x = 0; x <= 2; x++) {
+            for (int y = 0; y <= 2; y++) {
+                kielletytParit.add(new Numeropari(x, y));
+            }
+        }
+        ruudukkologiikka.asetaRuuduilleMiinat(kielletytParit);
+        assertEquals("Kielletyissä kenteissä oli miinoja", eiMiinojaKielletyissaPareissa(kielletytParit), true);
+    }
+    
+    @Test
+    public void miinojenAsettelijaAsettaaMiinatOikein2() {
+        alustus.luoPeli(14, 11, 20);
+        ruudukkologiikka = alustus.getPelipaneeli().getRuudukko().getRuudukkologiikka();
+        
         List<Numeropari> kielletytParit = new ArrayList<>();
         for (int x = 0; x <= 2; x++) {
             for (int y = 0; y <= 2; y++) {

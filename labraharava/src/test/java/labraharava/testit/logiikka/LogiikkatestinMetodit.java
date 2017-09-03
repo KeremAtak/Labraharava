@@ -70,4 +70,11 @@ public abstract class LogiikkatestinMetodit {
         }
     }
     
+    protected void luoEinelioruudukko() {
+        alustus.luoPeli(14, 11, 20);
+        ruudukko = alustus.getPelipaneeli().getRuudukko();
+        logiikka = ruudukko.getLogiikka();
+        ruudut = ruudukko.getRuudut();
+    }
+    
 }
