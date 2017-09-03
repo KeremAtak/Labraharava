@@ -13,6 +13,9 @@ Pelaaja pelaa painamalla vasemmalla hiiren näppäimellä raivaamattomia nappeja
 
 ![Luokkakaavio](/dokumentaatio/Luokkakaavio.jpg)
 
+<h4>Rakennekuvaus</h4>
+<b>Käynnistys</b>
+
 <h4>Uuden pelin luonti</h4>
 
 ![luoPeli](/dokumentaatio/luoPeli.jpg)
@@ -20,3 +23,5 @@ Pelaaja pelaa painamalla vasemmalla hiiren näppäimellä raivaamattomia nappeja
 <h4>Ruudun painaminen vasemmalla hiiren näppäimellä</h4>
 
 ![painaVasenta](/dokumentaatio/painaVasenta.jpg)
+
+Käynnistys
