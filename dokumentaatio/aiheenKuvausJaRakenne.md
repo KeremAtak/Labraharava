@@ -12,3 +12,11 @@ Pelaaja pelaa painamalla vasemmalla hiiren näppäimellä raivaamattomia nappeja
 <h4>Luokkakaavio</h4>
 
 ![Luokkakaavio](/dokumentaatio/Luokkakaavio.jpg)
+
+<h4>Uuden pelin luonti</h4>
+
+![luoPeli](/dokumentaatio/luoPeli.jpg)
+
+<h4>Ruudun painaminen vasemmalla hiiren näppäimellä</h4>
+
+![painaVasenta](/dokumentaatio/painaVasenta.jpg)
