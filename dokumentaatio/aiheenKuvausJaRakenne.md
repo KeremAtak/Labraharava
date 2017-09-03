@@ -41,7 +41,7 @@ tämän luokan kautta.
 
 <h3>Uuden pelin luonti</h3>
 
-![luoPeli](/dokumentaatio/LuoPeli.jpg)
+![luoPeli](/dokumentaatio/luoPeli.jpg)
 
 <h3>Ruudun painaminen vasemmalla hiiren näppäimellä</h3>
 
