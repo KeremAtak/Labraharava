@@ -38,8 +38,6 @@ tämän luokan kautta.
 
 <b>Koordinaattilaskuri</b>n tehtävä on laskea koordinaatin ruudun ympäröivät ruudut.
 
-<b>Koordinaattilaskuri</b>n tehtävä on laskea koordinaatin ruudun ympäröivät ruudut.
-
 
 <h3>Uuden pelin luonti</h3>
 
