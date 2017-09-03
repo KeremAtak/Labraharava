@@ -38,10 +38,9 @@ tämän luokan kautta.
 
 <b>Koordinaattilaskuri</b>n tehtävä on laskea koordinaatin ruudun ympäröivät ruudut.
 
-
 <h3>Uuden pelin luonti</h3>
 
-![luoPeli](/dokumentaatio/luoPeli.jpg)
+![luoPeli](/dokumentaatio/luoUusiPeli.jpg)
 
 <h3>Ruudun painaminen vasemmalla hiiren näppäimellä</h3>
 
