@@ -22,3 +22,4 @@ Päivä | Tunnit | Kuvaus
 02.09.2017 | 1,00h | Ruudukkologiikka toimii, logiikkaa ei enää ole Ruudukko-metodissa. Testejä siirretty eri luokkiin, Pit-raportissa näytetään vain logiikka.
 02.09.2017 | 0,75h | Tarkasteltuani koodia löysin syyn miksi ei-neliöruudukot eivät toimineet. Bugi korjattu.
 03.09.2017 | 3,50h | Testejä lisätty ei-neliöruudukkoja varten. Luokkakaavio päivitetty. Sekvenssikaavioita lisätty. Rakennekuvaus tehty aiheen kuvaukseen ja rakenteeseen. Käyttöohjeet luotu. Pit ja Checkstyle päivitetty. 
+03.09.2017 | 0,15h |  Javadoc päivitetty ja siirretty juurikansioon. Projekti julkaistu.
